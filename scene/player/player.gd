@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 		if gameInputControl.row_dir==0:
 			velocity.x=move_toward(velocity.x,0,friction*delta)
 	
-	if gameInputControl.is_jump:
-		velocity.y-=300
+
 		
 	move_and_slide()
