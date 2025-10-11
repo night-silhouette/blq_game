@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuqjpjakitt7t"]
+
+[ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
+[ext_resource type="Script" uid="uid://bmh5pgvtmuds7" path="res://class/state_machine/State_machine.gd" id="2_ajqqa"]
+[ext_resource type="Script" uid="uid://blsn8yru580ds" path="res://class/state_machine/Collision_management.gd" id="3_rkmeh"]
+[ext_resource type="Script" uid="uid://o3xnrols1rsb" path="res://class/state_machine/GameInputControl.gd" id="4_732fb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqfyc"]
+size = Vector2(20, 48)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_5lop3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GameInputControl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rqfyc")
+
+[node name="State_machine" type="Node" parent="."]
+script = ExtResource("2_ajqqa")
+metadata/_custom_type_script = "uid://bmh5pgvtmuds7"
+
+[node name="Collision_management" type="Node" parent="."]
+script = ExtResource("3_rkmeh")
+metadata/_custom_type_script = "uid://blsn8yru580ds"
+
+[node name="GameInputControl" type="Node" parent="."]
+script = ExtResource("4_732fb")
+metadata/_custom_type_script = "uid://o3xnrols1rsb"
