@@ -18,6 +18,7 @@ func init(obj: CharacterBody2D, animation_player:AnimationPlayer,collision_manag
 		state_changed.connect(func(pre,cur):
 			print("%s->%s"%[pre.name,cur.name]))
 	self.obj = obj
+	gameInputControl.obj=obj
 	set_all_children_init(get_children(), obj, animation_player, collision_management,gameInputControl)
 	
 	var start_state = state_map.get(init_state.to_lower())
