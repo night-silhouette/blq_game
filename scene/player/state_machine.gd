@@ -13,3 +13,5 @@ func phy_middleware():
 		change_state("dash")
 	if(obj.is_front_has_rigid):
 		change_state("climb")
+	if(gameInputControl.is_crouch):
+		change_state("crouch")

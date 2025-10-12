@@ -1,9 +1,14 @@
 extends GameInputControl
 
 
+@onready var left_head=$"../left_head"
+@onready var right_head=$"../right_head"
+
+
 var row_dir:float
 var is_jump:bool
 var is_dash:bool=false
+var is_crouch:bool=false
 var dash_control_flag:bool=true#dash时长控制用的
 var dash_span_flag:bool=true
 signal special_state_start(state)
@@ -20,6 +25,19 @@ func is_dash_temp():
 	else :
 		return false
 
+
+func is_crouch_temp():
+	var flag=true
+	if left_head.is_colliding() or right_head.is_colliding():
+		flag=false	
+	if Input.is_action_pressed("crouch"):
+		return true
+	elif !flag:
+		return true
+	else:
+		return false
+
+
 func _physics_process(delta: float) -> void:
 	
 	if (!dash_control_flag and obj.is_on_floor() and dash_span_flag):
@@ -29,5 +47,12 @@ func _physics_process(delta: float) -> void:
 	row_dir=Input.get_axis("move_l","move_r")
 	is_jump=obj.is_on_floor() and Input.is_action_just_pressed("jump")
 	is_dash=is_dash_temp()
-
+	
+	is_crouch=is_crouch_temp()
+		
+		
+		
+		
+		
+		
 		

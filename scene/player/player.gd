@@ -14,15 +14,16 @@ extends CharacterBody2D
 
 @export var accerleration=1800;
 @export var speed=220;
-@export var friction=1200;
+@export var friction=2000;
 @export var jump_ability=400
-@export var dash_time=0.20
-@export var dash_speed=550;
-@export var dash_span=0.5
+@export var dash_time=0.15
+@export var dash_speed=700;
+@export var dash_span=0.65
 @export var max_fall_speed=80
 var is_special_state=false
 func _ready():
 	state_machine.init(self,animationPlayer,collision_management,gameInputControl)
+	collision_management.init(self,null,null,gameInputControl)
 	gameInputControl.special_state_start.connect(func(state):is_special_state=true)
 	gameInputControl.special_state_end.connect(func(state):is_special_state=false)
 	
