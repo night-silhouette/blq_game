@@ -25,18 +25,24 @@ func is_dash_temp():
 	else :
 		return false
 
+var crouch_flag=1
 
 func is_crouch_temp():
-	var flag=true
-	if left_head.is_colliding() or right_head.is_colliding():
-		flag=false	
-	if Input.is_action_pressed("crouch"):
-		return true
-	elif !flag:
-		return true
-	else:
+	if Input.is_action_just_pressed("crouch"):
+		crouch_flag=2
+	if Input.is_action_just_released("crouch"):
+		crouch_flag=3
+	if crouch_flag==1 :
 		return false
-
+	elif crouch_flag==2:
+		return true
+	elif crouch_flag==3 :
+		if !left_head.is_colliding() and !right_head.is_colliding():
+			crouch_flag = 1
+			return false
+		else :
+			return true
+		
 
 func _physics_process(delta: float) -> void:
 	
