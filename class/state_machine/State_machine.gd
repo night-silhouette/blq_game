@@ -7,6 +7,7 @@ var current_state:State
 var prev_state:State
 var collision_management:Collision_management
 var cur_state_name;#远程调试方便
+var gameInputControl:GameInputControl;
 @export var is_debug=true
 ##state_machine的初始化函数
 ##[br]
@@ -18,6 +19,7 @@ func init(obj: CharacterBody2D, animation_player:AnimationPlayer,collision_manag
 		state_changed.connect(func(pre,cur):
 			print("%s->%s"%[pre.name,cur.name]))
 	self.obj = obj
+	self.gameInputControl=gameInputControl
 	gameInputControl.obj=obj
 	set_all_children_init(get_children(), obj, animation_player, collision_management,gameInputControl)
 	
@@ -36,7 +38,6 @@ func set_all_children_init(children, parent: CharacterBody2D, animation_player:A
 			child.gameInputControl =  gameInputControl
 			
 			child.finished.connect(func(next_state_name):
-				change_before(next_state_name)
 				change_state(next_state_name))
 			state_map.set(child.name.to_lower(), child)
 		elif child.get_child_count() > 0:
@@ -48,7 +49,7 @@ func insert_with_exit_enter():
 func change_before(next_state_name):
 	pass
 func change_state(next_state_name:String):
-	
+	change_before(next_state_name)
 	var next_state = state_map.get(next_state_name.to_lower(),null)
 	if (!next_state.is_use):
 		return

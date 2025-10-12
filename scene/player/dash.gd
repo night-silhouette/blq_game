@@ -8,7 +8,7 @@ func exit() :
 func update(_delta: float):
 	pass
 func physics_process(_delta: float):
-	pass
+	obj.velocity.x=obj.face_dir*obj.dash_speed
 	
 func handled_input(_event: InputEvent):
 	pass

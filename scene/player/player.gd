@@ -7,11 +7,16 @@ extends CharacterBody2D
 @export var accerleration=900;
 @export var speed=220;
 @export var friction=1200;
+@export var jump_ability=300
+@export var dash_time=0.25
+@export var dash_speed=550;
 var is_special_state=false
 func _ready():
 	state_machine.init(self,animationPlayer,collision_management,gameInputControl)
 	gameInputControl.special_state_start.connect(func(state):is_special_state=true)
 	gameInputControl.special_state_end.connect(func(state):is_special_state=false)
+	
+var face_dir=1
 func _physics_process(delta: float) -> void:
 	if not is_special_state:#一些特殊状态 ban常规逻辑
 		velocity.y+=GlobalValue.gravity
@@ -25,3 +30,18 @@ func _physics_process(delta: float) -> void:
 
 		
 	move_and_slide()
+	if gameInputControl.row_dir!=0:
+		face_dir=gameInputControl.row_dir
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

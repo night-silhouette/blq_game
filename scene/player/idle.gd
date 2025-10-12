@@ -6,10 +6,7 @@ func exit() :
 	pass
 
 func update(_delta: float):
-	if(gameInputControl.row_dir!=0):
-		finished.emit("run")
-	if(gameInputControl.is_jump):
-		finished.emit("jump")
+	pass 
 func physics_process(_delta: float):
 	pass
 	

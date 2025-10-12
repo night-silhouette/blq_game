@@ -1,6 +1,6 @@
 extends State
 func enter() :
-	pass
+	obj.velocity.y-=obj.jump_ability
 	
 func exit() :
 	pass

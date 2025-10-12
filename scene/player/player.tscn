@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=10 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
-[ext_resource type="Script" uid="uid://bmh5pgvtmuds7" path="res://class/state_machine/State_machine.gd" id="2_ajqqa"]
+[ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
 [ext_resource type="Script" uid="uid://b2srfyujbqh53" path="res://scene/player/idle.gd" id="3_732fb"]
-[ext_resource type="Script" uid="uid://brqbum8ooxk1j" path="res://class/state_machine/state.gd" id="3_ajqqa"]
 [ext_resource type="Script" uid="uid://blsn8yru580ds" path="res://class/state_machine/Collision_management.gd" id="3_rkmeh"]
 [ext_resource type="Script" uid="uid://dpghkfluquonl" path="res://scene/player/game_input_control.gd" id="4_5lop3"]
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
+[ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
+[ext_resource type="Script" uid="uid://y8783jdrnede" path="res://scene/player/dash.gd" id="6_hfhxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqfyc"]
 size = Vector2(20, 48)
@@ -21,7 +22,7 @@ root_node = NodePath("../GameInputControl")
 shape = SubResource("RectangleShape2D_rqfyc")
 
 [node name="State_machine" type="Node" parent="."]
-script = ExtResource("2_ajqqa")
+script = ExtResource("2_732fb")
 init_state = "idle"
 metadata/_custom_type_script = "uid://bmh5pgvtmuds7"
 
@@ -34,7 +35,11 @@ script = ExtResource("4_732fb")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="jump" type="Node2D" parent="State_machine"]
-script = ExtResource("3_ajqqa")
+script = ExtResource("5_732fb")
+metadata/_custom_type_script = "uid://brqbum8ooxk1j"
+
+[node name="dash" type="Node2D" parent="State_machine"]
+script = ExtResource("6_hfhxk")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="Collision_management" type="Node" parent="."]
