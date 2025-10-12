@@ -8,8 +8,9 @@ extends CharacterBody2D
 @export var speed=220;
 @export var friction=1200;
 @export var jump_ability=300
-@export var dash_time=0.25
+@export var dash_time=0.20
 @export var dash_speed=550;
+@export var dash_span=0.5
 var is_special_state=false
 func _ready():
 	state_machine.init(self,animationPlayer,collision_management,gameInputControl)

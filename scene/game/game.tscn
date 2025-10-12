@@ -14,7 +14,7 @@ size = Vector2(84, 20)
 [node name="game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_8xedm")]
-position = Vector2(278, 153)
+position = Vector2(385, 230)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
@@ -36,5 +36,19 @@ shape = SubResource("RectangleShape2D_pw1yp")
 position = Vector2(675, 220)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_l2vx3")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(502, 189)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_l2vx3")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(269, 190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_l2vx3")
