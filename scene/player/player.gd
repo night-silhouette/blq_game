@@ -12,10 +12,10 @@ extends CharacterBody2D
 @onready var debug=$debug
 
 
-@export var accerleration=1000;
+@export var accerleration=1800;
 @export var speed=220;
 @export var friction=1200;
-@export var jump_ability=300
+@export var jump_ability=400
 @export var dash_time=0.20
 @export var dash_speed=550;
 @export var dash_span=0.5

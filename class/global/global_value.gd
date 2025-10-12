@@ -1,3 +1,3 @@
 extends Node
 
-var gravity=9
+var gravity=15

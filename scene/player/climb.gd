@@ -14,8 +14,8 @@ func physics_process(_delta: float):
 	if obj.velocity.y > obj.max_fall_speed:
 		obj.velocity.y=obj.max_fall_speed
 	if(Input.is_action_just_pressed("jump")):
-		obj.velocity.y=-obj.jump_ability*0.6
-		obj.velocity.x=-obj.jump_ability*1.1*obj.face_dir
+		obj.velocity.y=-obj.jump_ability*1
+		obj.velocity.x=-obj.jump_ability*0.9*obj.face_dir
 		finished.emit("fall")
 func handled_input(_event: InputEvent):
 	pass
