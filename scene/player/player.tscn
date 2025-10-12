@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=12 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
 [ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
 [ext_resource type="Script" uid="uid://y8783jdrnede" path="res://scene/player/dash.gd" id="6_hfhxk"]
+[ext_resource type="Script" uid="uid://dgl1jud157h88" path="res://scene/player/climb.gd" id="7_oypl4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqfyc"]
 size = Vector2(20, 48)
@@ -44,6 +45,10 @@ script = ExtResource("6_hfhxk")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="climb" type="Node2D" parent="State_machine"]
+script = ExtResource("7_oypl4")
+metadata/_custom_type_script = "uid://brqbum8ooxk1j"
+
+[node name="fall" type="Node2D" parent="State_machine"]
 script = ExtResource("3_ajqqa")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
@@ -57,25 +62,31 @@ metadata/_custom_type_script = "uid://o3xnrols1rsb"
 
 [node name="front_head" type="RayCast2D" parent="."]
 position = Vector2(0, -24)
-target_position = Vector2(12, 0)
+target_position = Vector2(12.5, 0)
 
 [node name="front_body" type="RayCast2D" parent="."]
-target_position = Vector2(12, 0)
+target_position = Vector2(12.5, 0)
 
 [node name="front_foot" type="RayCast2D" parent="."]
 position = Vector2(0, 24)
-target_position = Vector2(12, 0)
+target_position = Vector2(12.5, 0)
 
 [node name="back_head" type="RayCast2D" parent="."]
 position = Vector2(0, -24)
 scale = Vector2(-1, -1)
-target_position = Vector2(12, 0)
+target_position = Vector2(12.5, 0)
 
 [node name="back_body" type="RayCast2D" parent="."]
 scale = Vector2(-1, -1)
-target_position = Vector2(12, 0)
+target_position = Vector2(12.5, 0)
 
 [node name="back_foot" type="RayCast2D" parent="."]
 position = Vector2(0, 24)
 scale = Vector2(-1, -1)
-target_position = Vector2(12, 0)
+target_position = Vector2(12.5, 0)
+
+[node name="debug" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -25.0

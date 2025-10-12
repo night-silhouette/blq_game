@@ -49,8 +49,11 @@ func insert_with_exit_enter():
 func change_before(next_state_name):
 	pass
 func change_state(next_state_name:String):
-	change_before(next_state_name)
 	var next_state = state_map.get(next_state_name.to_lower(),null)
+	if next_state_name==cur_state_name:
+		return;
+	change_before(next_state_name)
+
 	if (!next_state.is_use):
 		return
 	if(!next_state):
