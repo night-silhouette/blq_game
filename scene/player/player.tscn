@@ -2,17 +2,15 @@
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
+[ext_resource type="Shape2D" uid="uid://kg2fnu2m7bs8" path="res://scene/player/collision_shape/normal.tres" id="2_qjg4s"]
 [ext_resource type="Script" uid="uid://b2srfyujbqh53" path="res://scene/player/idle.gd" id="3_732fb"]
 [ext_resource type="Script" uid="uid://brqbum8ooxk1j" path="res://class/state_machine/state.gd" id="3_ajqqa"]
-[ext_resource type="Script" uid="uid://blsn8yru580ds" path="res://class/state_machine/Collision_management.gd" id="3_rkmeh"]
 [ext_resource type="Script" uid="uid://dpghkfluquonl" path="res://scene/player/game_input_control.gd" id="4_5lop3"]
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
 [ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
 [ext_resource type="Script" uid="uid://y8783jdrnede" path="res://scene/player/dash.gd" id="6_hfhxk"]
 [ext_resource type="Script" uid="uid://dgl1jud157h88" path="res://scene/player/climb.gd" id="7_oypl4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqfyc"]
-size = Vector2(20, 48)
+[ext_resource type="Script" uid="uid://4v4i80kt2x4i" path="res://scene/player/collision_management.gd" id="10_qjg4s"]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_5lop3")
@@ -20,8 +18,8 @@ script = ExtResource("1_5lop3")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_rqfyc")
+[node name="main_collision" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_qjg4s")
 
 [node name="State_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")
@@ -53,7 +51,9 @@ script = ExtResource("3_ajqqa")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="Collision_management" type="Node" parent="."]
-script = ExtResource("3_rkmeh")
+script = ExtResource("10_qjg4s")
+init_state = null
+is_debug = null
 metadata/_custom_type_script = "uid://blsn8yru580ds"
 
 [node name="GameInputControl" type="Node" parent="."]
