@@ -3,6 +3,14 @@ extends CharacterBody2D
 @onready var state_machine=$State_machine
 @onready var collision_management=$Collision_management
 @onready var gameInputControl=$GameInputControl
+@onready var front_foot=$front_foot
+@onready var front_head=$front_head
+@onready var front_body=$front_body
+@onready var back_foot=$back_foot
+@onready var back_head=$back_head
+@onready var back_body=$back_body
+
+
 
 @export var accerleration=900;
 @export var speed=220;
@@ -19,6 +27,10 @@ func _ready():
 	
 var face_dir=1
 func _physics_process(delta: float) -> void:
+	
+	
+	
+	
 	if not is_special_state:#一些特殊状态 ban常规逻辑
 		velocity.y+=GlobalValue.gravity
 		if gameInputControl.row_dir>0:
@@ -31,9 +43,18 @@ func _physics_process(delta: float) -> void:
 
 		
 	move_and_slide()
+	
+	
 	if gameInputControl.row_dir!=0:
-		face_dir=gameInputControl.row_dir
-		
+		var new_face_dir=gameInputControl.row_dir
+		if face_dir!=new_face_dir:
+			front_foot.scale.x*=-1
+			front_head.scale.x*=-1
+			front_body.scale.x*=-1
+			back_foot.scale.x*=-1
+			back_head.scale.x*=-1
+			back_body.scale.x*=-1
+		face_dir = new_face_dir
 		
 		
 		

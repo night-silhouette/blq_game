@@ -14,7 +14,7 @@ var gameInputControl:GameInputControl;
 ##[param obj]:CharacterBody2D[br]
 ##[param animation_player]:AnimationPlayer[br]
 ##[param gameInputControl]:GameInputControl[br]
-func init(obj: CharacterBody2D, animation_player:AnimationPlayer,collision_management:Collision_management, gameInputControl: GameInputControl = null) -> void:
+func init(obj: CharacterBody2D, animation_player:AnimationPlayer=null,collision_management:Collision_management=null, gameInputControl: GameInputControl = null) -> void:
 	if is_debug:	
 		state_changed.connect(func(pre,cur):
 			print("%s->%s"%[pre.name,cur.name]))
