@@ -1,6 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvsjamxlv4b6i"]
+[gd_scene load_steps=8 format=3 uid="uid://bvsjamxlv4b6i"]
 
 [ext_resource type="PackedScene" uid="uid://cuqjpjakitt7t" path="res://scene/player/player.tscn" id="1_8xedm"]
+
+[sub_resource type="Gradient" id="Gradient_8xedm"]
+offsets = PackedFloat32Array(0, 0.219178, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.506849, 0.506849, 0.506849, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pw1yp"]
+gradient = SubResource("Gradient_8xedm")
+fill = 1
+fill_from = Vector2(0.481651, 0.527523)
+fill_to = Vector2(0.834862, 0.252294)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xedm"]
 size = Vector2(1090, 20)
@@ -20,6 +30,12 @@ size = Vector2(20, 279)
 position = Vector2(385, 230)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="PointLight2D" type="PointLight2D" parent="player"]
+position = Vector2(-3.09944e-06, 4.76837e-07)
+scale = Vector2(2.63867, 2.58008)
+color = Color(1, 0.882667, 0.56, 1)
+texture = SubResource("GradientTexture2D_pw1yp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(238, 279)
@@ -68,3 +84,6 @@ position = Vector2(-89, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
 position = Vector2(0, 129.5)
 shape = SubResource("RectangleShape2D_82mss")
+
+[node name="environment" type="CanvasModulate" parent="."]
+color = Color(0.72, 0.72, 0.72, 1)

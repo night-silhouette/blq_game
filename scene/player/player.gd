@@ -19,7 +19,7 @@ extends CharacterBody2D
 @export var dash_time=0.15
 @export var dash_speed=700;
 @export var dash_span=0.65
-@export var max_fall_speed=80
+@export var max_fall_speed=100
 var is_special_state=false
 func _ready():
 	state_machine.init(self,animationPlayer,collision_management,gameInputControl)
