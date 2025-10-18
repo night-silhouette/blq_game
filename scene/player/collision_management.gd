@@ -1,4 +1,4 @@
-extends Collision_management
+extends State_machine
 
 @onready var main_collision=$"../main_collision"
 

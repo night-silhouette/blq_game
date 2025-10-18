@@ -1,6 +1,6 @@
 extends CharacterBody2D
-@onready var animationPlayer=$AnimationPlayer
-@onready var state_machine=$State_machine
+@onready var animationPlayer=$ani_move 
+@onready var move_state_machine=$move_state_machine
 @onready var collision_management=$Collision_management
 @onready var gameInputControl=$GameInputControl
 @onready var front_foot=$front_foot
@@ -10,11 +10,11 @@ extends CharacterBody2D
 @onready var back_head=$back_head
 @onready var back_body=$back_body
 @onready var debug=$debug
+@onready var attack_state_machine=$attack_state_machine
 
-
-@export var accerleration=1800;
-@export var speed=220;
-@export var friction=2000;
+@export var accerleration=2500;
+@export var speed=230;
+@export var friction=3000;
 @export var jump_ability=400
 @export var dash_time=0.15
 @export var dash_speed=700;
@@ -22,8 +22,14 @@ extends CharacterBody2D
 @export var max_fall_speed=100
 var is_special_state=false
 func _ready():
-	state_machine.init(self,animationPlayer,collision_management,gameInputControl)
-	collision_management.init(self,null,null,gameInputControl)
+	
+	
+	move_state_machine.init(self,animationPlayer,gameInputControl)
+	collision_management.init(self,null,gameInputControl)
+	attack_state_machine.init(self,animationPlayer,gameInputControl)
+	#init state_machine --ending--
+	
+	
 	gameInputControl.special_state_start.connect(func(state):is_special_state=true)
 	gameInputControl.special_state_end.connect(func(state):is_special_state=false)
 	

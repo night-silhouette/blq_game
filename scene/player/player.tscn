@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=15 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
@@ -13,54 +13,54 @@
 [ext_resource type="Script" uid="uid://cniigpxsfg5e2" path="res://scene/player/crouch(machine).gd" id="10_p3aiu"]
 [ext_resource type="Script" uid="uid://4v4i80kt2x4i" path="res://scene/player/collision_management.gd" id="10_qjg4s"]
 [ext_resource type="Script" uid="uid://82wvb2w3wvc2" path="res://scene/player/crouch.gd" id="11_1wtbu"]
+[ext_resource type="Script" uid="uid://32cp2rxvpv1t" path="res://scene/player/attack_state_machine.gd" id="13_f5r2w"]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_5lop3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="ani_move" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")
 
 [node name="main_collision" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_qjg4s")
 
-[node name="State_machine" type="Node" parent="."]
+[node name="move_state_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")
 init_state = "idle"
-is_debug = false
 metadata/_custom_type_script = "uid://bmh5pgvtmuds7"
 
-[node name="idle" type="Node2D" parent="State_machine"]
+[node name="idle" type="Node2D" parent="move_state_machine"]
 script = ExtResource("3_732fb")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
-[node name="run" type="Node2D" parent="State_machine"]
+[node name="run" type="Node2D" parent="move_state_machine"]
 script = ExtResource("4_732fb")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
-[node name="jump" type="Node2D" parent="State_machine"]
+[node name="jump" type="Node2D" parent="move_state_machine"]
 script = ExtResource("5_732fb")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
-[node name="dash" type="Node2D" parent="State_machine"]
+[node name="dash" type="Node2D" parent="move_state_machine"]
 script = ExtResource("6_hfhxk")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
-[node name="climb" type="Node2D" parent="State_machine"]
+[node name="climb" type="Node2D" parent="move_state_machine"]
 script = ExtResource("7_oypl4")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
-[node name="fall" type="Node2D" parent="State_machine"]
+[node name="fall" type="Node2D" parent="move_state_machine"]
 script = ExtResource("3_ajqqa")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
-[node name="crouch" type="Node2D" parent="State_machine"]
+[node name="crouch" type="Node2D" parent="move_state_machine"]
 script = ExtResource("10_p3aiu")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="Collision_management" type="Node" parent="."]
 script = ExtResource("10_qjg4s")
 init_state = "normal"
-metadata/_custom_type_script = "uid://blsn8yru580ds"
+is_debug = false
 
 [node name="normal" type="Node2D" parent="Collision_management"]
 script = ExtResource("3_ajqqa")
@@ -69,6 +69,10 @@ metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 [node name="crouch" type="Node2D" parent="Collision_management"]
 script = ExtResource("11_1wtbu")
 metadata/_custom_type_script = "uid://brqbum8ooxk1j"
+
+[node name="attack_state_machine" type="Node" parent="."]
+script = ExtResource("13_f5r2w")
+metadata/_custom_type_script = "uid://bmh5pgvtmuds7"
 
 [node name="GameInputControl" type="Node" parent="."]
 script = ExtResource("4_5lop3")

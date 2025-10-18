@@ -4,7 +4,7 @@ func enter() :
 	
 func exit() :
 	obj.speed/=0.7
-
+	
 func update(_delta: float):
 	pass 
 func physics_process(_delta: float):

@@ -6,7 +6,7 @@ var animation_player:AnimationPlayer=null;
 var state_time:float=0.0;
 var obj:CharacterBody2D=null
 var gameInputControl: GameInputControl = null
-var collision_management:Collision_management=null
+
 signal finished(next_state_name)
 var is_use=true
 
