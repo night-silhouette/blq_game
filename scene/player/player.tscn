@@ -139,11 +139,12 @@ script = ExtResource("10_p3aiu")
 script = ExtResource("10_qjg4s")
 init_state = "normal"
 
-[node name="normal" type="Node2D" parent="Collision_management"]
-script = ExtResource("3_ajqqa")
-
 [node name="crouch" type="Node2D" parent="Collision_management"]
 script = ExtResource("11_1wtbu")
+
+[node name="normal" type="Node2D" parent="Collision_management"]
+script = ExtResource("3_ajqqa")
+metadata/_custom_type_script = "uid://dby1spka0hb1q"
 
 [node name="attack_state_machine" type="Node" parent="."]
 script = ExtResource("13_f5r2w")

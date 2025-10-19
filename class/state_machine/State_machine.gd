@@ -5,24 +5,24 @@ var obj: CharacterBody2D
 var state_map:Dictionary = {}
 var current_state:State 
 var prev_state:State
-var gameInputControl:GameInputControl
-
 
 var cur_state_name;#远程调试方便
-@export var is_debug=true
+var gameInputControl:GameInputControl;
+@export var is_debug:bool=false
 ##state_machine的初始化函数
 ##[br]
 ##[param obj]:CharacterBody2D[br]
 ##[param animation_player]:AnimationPlayer[br]
 ##[param gameInputControl]:GameInputControl[br]
-func init(obj: CharacterBody2D, animation_player:AnimationPlayer, gameInputControl: GameInputControl = null) -> void:
+func init(obj: CharacterBody2D, animation_player:AnimationPlayer=null, gameInputControl: GameInputControl = null) -> void:
 	if is_debug:	
 		state_changed.connect(func(pre,cur):
 			print("%s->%s"%[pre.name,cur.name]))
-	gameInputControl.obj=obj
 	self.obj = obj
-	set_all_children_init(get_children(), obj, animation_player,gameInputControl)
 	self.gameInputControl=gameInputControl
+	gameInputControl.obj=obj
+	set_all_children_init(get_children(), obj, animation_player,gameInputControl)
+	
 	var start_state = state_map.get(init_state.to_lower())
 	if(start_state):
 		start_state.enter()
@@ -38,7 +38,6 @@ func set_all_children_init(children, parent: CharacterBody2D, animation_player:A
 			child.gameInputControl =  gameInputControl
 			
 			child.finished.connect(func(next_state_name):
-				change_before(next_state_name)
 				change_state(next_state_name))
 			state_map.set(child.name.to_lower(), child)
 		elif child.get_child_count() > 0:
@@ -50,12 +49,19 @@ func insert_with_exit_enter():
 func change_before(next_state_name):
 	pass
 func change_state(next_state_name:String):
-	
 	var next_state = state_map.get(next_state_name.to_lower(),null)
+	if next_state_name==cur_state_name:
+		return;
 	if (!next_state.is_use):
 		return
 	if(!next_state):
 		return
+		
+		
+		
+		
+	change_before(next_state_name)
+
 	if(current_state):
 		current_state.exit()
 		prev_state = current_state

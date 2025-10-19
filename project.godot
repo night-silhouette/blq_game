@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="blq_game"
-run/main_scene="uid://cp0yq0tiw5p7b"
+run/main_scene="uid://bvsjamxlv4b6i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
