@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqdx3b1ko8dmm"]
+
+[ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="1_rayvk"]
+[ext_resource type="Script" uid="uid://cvwei4q0cqlu6" path="res://scene/ui/slot/slot.gd" id="1_xnod1"]
+[ext_resource type="Texture2D" uid="uid://b3f4whty2ue3f" path="res://asset/image/弓.png" id="2_uow3e"]
+
+[sub_resource type="GDScript" id="GDScript_hpoan"]
+script/source = "extends Resource
+class_name Item
+
+@export var title : String
+@export var icon :Texture2D
+@export_multiline var description :String
+"
+
+[sub_resource type="Resource" id="Resource_poc3h"]
+script = SubResource("GDScript_hpoan")
+title = "弓"
+icon = ExtResource("2_uow3e")
+description = "这是一把弓"
+
+[node name="Slot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xnod1")
+item = SubResource("Resource_poc3h")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_rayvk")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqdx3b1ko8dmm"]
+
+[ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="1_rayvk"]
+
+[sub_resource type="GDScript" id="GDScript_rayvk"]
+script/source = "extends PanelContainer
+
+
+@export var item :Item:
+	set(value):
+		item = value
+		$Icon.texture = item.icon
+	
+
+
+	
+func _on_mouse_entered():
+	if item !=null:
+		owner.set_description(item)
+		
+
+
+
+
+
+	
+	
+	
+	
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_tkmrp"]
+script/source = "extends Resource
+class_name Item
+
+@export var title:String
+@export var icon:Texture2D  # 对应Icon的图片
+@export_multiline var description :String
+@export var effect_type:String = \"light_2_adjacent\"  # 新增：拖拽后的效果类型
+"
+
+[sub_resource type="Resource" id="Resource_6htvs"]
+script = SubResource("GDScript_tkmrp")
+title = ""
+description = ""
+effect_type = "light_2_adjacent"
+
+[node name="Slot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_rayvk")
+item = SubResource("Resource_6htvs")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_rayvk")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

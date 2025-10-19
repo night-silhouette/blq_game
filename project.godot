@@ -11,5 +11,14 @@ config_version=5
 [application]
 
 config/name="blq_game"
+run/main_scene="uid://cp0yq0tiw5p7b"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=3
+
+[gui]
+
+theme/custom_font="uid://bmwg8r1ycvvby"

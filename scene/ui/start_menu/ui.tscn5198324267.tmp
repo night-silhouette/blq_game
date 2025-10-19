@@ -1,0 +1,679 @@
+[gd_scene load_steps=31 format=3 uid="uid://cp0yq0tiw5p7b"]
+
+[ext_resource type="Script" uid="uid://hlu5j5vlugox" path="res://scene/ui/start_menu/ui.gd" id="1_4fyha"]
+[ext_resource type="Texture2D" uid="uid://dbsfb7jikx27j" path="res://asset/image/tile_0003.png" id="1_psp42"]
+[ext_resource type="FontFile" uid="uid://bmwg8r1ycvvby" path="res://scene/font/fusion-pixel-12px-monospaced-zh_hans.ttf" id="2_fvtxj"]
+[ext_resource type="Script" uid="uid://dry8ymq6o3ufb" path="res://scene/ui/start_menu/new_game.gd" id="5_tbycw"]
+[ext_resource type="Script" uid="uid://dhwsu87c8meqa" path="res://scene/ui/start_menu/continue.gd" id="6_0sjbt"]
+[ext_resource type="Theme" uid="uid://u2n6r4snr8px" path="res://scene/theme/new_theme.tres" id="6_fvtxj"]
+[ext_resource type="Script" uid="uid://cjx0xrm4nrmm8" path="res://scene/ui/start_menu/settings.gd" id="7_uvuoi"]
+[ext_resource type="Script" uid="uid://cv18rtp8b7s05" path="res://scene/ui/start_menu/save_load.gd" id="8_fjm67"]
+[ext_resource type="Texture2D" uid="uid://b85wnw53kayvr" path="res://asset/image/tile_0000.png" id="8_uyynd"]
+[ext_resource type="PackedScene" uid="uid://bqdx3b1ko8dmm" path="res://scene/ui/slot/slot.tscn" id="9_2d6xq"]
+[ext_resource type="Script" uid="uid://cp0ows5n3vrqp" path="res://scene/ui/start_menu/quit_exit.gd" id="9_cvtyo"]
+[ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="10_adnce"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyynd"]
+
+[sub_resource type="Theme" id="Theme_41ywu"]
+Button/styles/normal = SubResource("StyleBoxFlat_uyynd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adnce"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvtxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d6xq"]
+
+[sub_resource type="Theme" id="Theme_adnce"]
+Button/styles/hover = SubResource("StyleBoxFlat_adnce")
+Button/styles/normal = SubResource("StyleBoxFlat_fvtxj")
+Button/styles/pressed = SubResource("StyleBoxFlat_2d6xq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkmrp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf358"]
+
+[sub_resource type="GDScript" id="GDScript_phetf"]
+script/source = "extends Resource
+class_name Item
+
+@export var title : String
+@export var icon :Texture2D
+@export_multiline var description :String
+"
+
+[sub_resource type="Resource" id="Resource_ytmwh"]
+script = SubResource("GDScript_phetf")
+title = ""
+description = ""
+metadata/_custom_type_script = "uid://y83cgubopaxo"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbycw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sjbt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvuoi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phetf"]
+bg_color = Color(0.753929, 0.487123, 0.256861, 1)
+border_width_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mn3b"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_ytmwh"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("2_fvtxj")
+Button/styles/disabled = SubResource("StyleBoxFlat_tbycw")
+Button/styles/focus = SubResource("StyleBoxFlat_0sjbt")
+Button/styles/hover = SubResource("StyleBoxFlat_uvuoi")
+Button/styles/normal = SubResource("StyleBoxFlat_phetf")
+Button/styles/pressed = SubResource("StyleBoxFlat_6mn3b")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytmwh"]
+bg_color = Color(0.752941, 0.486275, 0.254902, 1)
+border_width_bottom = 10
+
+[sub_resource type="Theme" id="Theme_qnnce"]
+Button/styles/normal = SubResource("StyleBoxFlat_ytmwh")
+
+[node name="UI" type="Control" node_paths=PackedStringArray("equipment_panel", "inscription_panel", "description", "equipment_library", "inscription_library")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4fyha")
+equipment_panel = NodePath("装备库")
+inscription_panel = NodePath("铭文库")
+description = NodePath("铭文库/Description")
+equipment_library = NodePath("装备库/change/Button")
+inscription_library = NodePath("铭文库/change/Button")
+
+[node name="Menu" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 655.0
+texture = ExtResource("1_psp42")
+region_rect = Rect2(-4.88403, -3.15233, 41.991, 37.8589)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.5
+offset_top = -334.0
+offset_right = 276.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_41ywu")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="New Game" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_adnce")
+theme_override_font_sizes/font_size = 30
+text = "开始游戏"
+flat = true
+script = ExtResource("5_tbycw")
+
+[node name="Continue" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkmrp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf358")
+text = "继续游戏"
+flat = true
+script = ExtResource("6_0sjbt")
+
+[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "设置"
+flat = true
+script = ExtResource("7_uvuoi")
+
+[node name="Save_load" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "存档"
+flat = true
+script = ExtResource("8_fjm67")
+
+[node name="Quit_Exit" type="Button" parent="Menu/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("6_fvtxj")
+theme_override_font_sizes/font_size = 30
+text = "退出"
+flat = true
+script = ExtResource("9_cvtyo")
+
+[node name="铭文库" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 646.0
+texture = ExtResource("8_uyynd")
+region_rect = Rect2(-5.98812, -5.36642, 41.4716, 39.2419)
+patch_margin_left = 10
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="铭文库"]
+layout_mode = 1
+offset_left = 119.0
+offset_top = 131.0
+offset_right = 367.0
+offset_bottom = 379.0
+scale = Vector2(1.5, 1.5)
+columns = 7
+
+[node name="Slot" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+item = SubResource("Resource_ytmwh")
+
+[node name="Slot2" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot3" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot4" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot5" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot6" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot7" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot8" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot9" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot10" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot11" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot12" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot13" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot14" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot15" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot16" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot17" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot18" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot19" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot20" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot21" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot22" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot23" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot24" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot25" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot26" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot27" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot28" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot29" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot30" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot31" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot32" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot33" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot34" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot35" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot36" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot37" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot38" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot39" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot40" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot41" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot42" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot43" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot44" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot45" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot46" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot47" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot48" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot49" parent="铭文库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Description" type="NinePatchRect" parent="铭文库"]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 123.0
+offset_right = 989.0
+offset_bottom = 502.0
+texture = ExtResource("10_adnce")
+region_rect = Rect2(-2.5809, -3.5465, 38.4987, 39.2419)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 6
+patch_margin_bottom = 7
+
+[node name="Name" type="Label" parent="铭文库/Description"]
+layout_mode = 0
+offset_right = 118.0
+offset_bottom = 64.0
+
+[node name="Description" type="RichTextLabel" parent="铭文库/Description"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 107.0
+offset_right = 203.0
+offset_bottom = 346.0
+
+[node name="Icon" type="TextureRect" parent="铭文库/Description"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 145.0
+offset_right = 362.0
+offset_bottom = 339.0
+
+[node name="change" type="NinePatchRect" parent="铭文库"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="铭文库/change"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 644.0
+offset_right = 144.0
+offset_bottom = 709.0
+theme = SubResource("Theme_ytmwh")
+theme_override_font_sizes/font_size = 30
+text = "装备库"
+script = ExtResource("1_4fyha")
+
+[node name="Button2" type="Button" parent="铭文库/change"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 642.0
+offset_right = 280.0
+offset_bottom = 708.0
+theme = SubResource("Theme_qnnce")
+theme_override_font_sizes/font_size = 30
+text = "返回"
+
+[node name="装备库" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 646.0
+texture = ExtResource("8_uyynd")
+region_rect = Rect2(-5.98812, -5.36642, 41.4716, 39.2419)
+patch_margin_left = 10
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="装备库"]
+layout_mode = 1
+offset_left = 119.0
+offset_top = 131.0
+offset_right = 367.0
+offset_bottom = 379.0
+scale = Vector2(1.5, 1.5)
+columns = 7
+
+[node name="Slot" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot2" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot3" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot4" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot5" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot6" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot7" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot8" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot9" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot10" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot11" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot12" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot13" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot14" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot15" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot16" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot17" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot18" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot19" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot20" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot21" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot22" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot23" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot24" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot25" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot26" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot27" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot28" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot29" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot30" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot31" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot32" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot33" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot34" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot35" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot36" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot37" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot38" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot39" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot40" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot41" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot42" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot43" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot44" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot45" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot46" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot47" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot48" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Slot49" parent="装备库/GridContainer" instance=ExtResource("9_2d6xq")]
+layout_mode = 2
+
+[node name="Description" type="NinePatchRect" parent="装备库"]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 123.0
+offset_right = 989.0
+offset_bottom = 502.0
+texture = ExtResource("10_adnce")
+region_rect = Rect2(-2.5809, -3.5465, 38.4987, 39.2419)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 6
+patch_margin_bottom = 7
+
+[node name="Name" type="Label" parent="装备库/Description"]
+layout_mode = 0
+offset_right = 118.0
+offset_bottom = 64.0
+
+[node name="Description" type="RichTextLabel" parent="装备库/Description"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 107.0
+offset_right = 203.0
+offset_bottom = 346.0
+
+[node name="Icon" type="TextureRect" parent="装备库/Description"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 145.0
+offset_right = 362.0
+offset_bottom = 339.0
+
+[node name="change" type="NinePatchRect" parent="装备库"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="装备库/change"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 644.0
+offset_right = 144.0
+offset_bottom = 709.0
+theme = SubResource("Theme_ytmwh")
+theme_override_font_sizes/font_size = 30
+text = "铭文库"
+script = ExtResource("1_4fyha")
+
+[node name="Button2" type="Button" parent="装备库/change"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 642.0
+offset_right = 280.0
+offset_bottom = 708.0
+theme = SubResource("Theme_qnnce")
+theme_override_font_sizes/font_size = 30
+text = "返回"
+
+[connection signal="pressed" from="铭文库/change/Button" to="." method="switch_to_equipment_panel"]
+[connection signal="pressed" from="装备库/change/Button" to="." method="switch_to_inscription_panel"]

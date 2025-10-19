@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://44dhrdsg62ql"]
+
+[ext_resource type="Texture2D" uid="uid://cxwi6lmj6pd6f" path="res://asset/image/蓝水晶法杖.png" id="1_efvnt"]
+[ext_resource type="Script" uid="uid://cy3uof1s3hbg7" path="res://scene/ui/start_menu/Item.gd" id="2_ltc66"]
+
+[resource]
+script = ExtResource("2_ltc66")
+title = "蓝水晶法杖"
+icon = ExtResource("1_efvnt")
+description = "解锁右斜向上相邻两个格子"
+metadata/_custom_type_script = "uid://cy3uof1s3hbg7"
