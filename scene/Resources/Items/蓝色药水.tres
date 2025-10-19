@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ccryrej5vasu5"]
+
+[ext_resource type="Texture2D" uid="uid://sscai72l6smb" path="res://asset/image/蓝色药水.png" id="1_4tefi"]
+[ext_resource type="Script" uid="uid://cy3uof1s3hbg7" path="res://scene/ui/start_menu/Item.gd" id="2_0dp6k"]
+
+[resource]
+script = ExtResource("2_0dp6k")
+title = "蓝色药水"
+icon = ExtResource("1_4tefi")
+description = "解锁上下两个格子"
+metadata/_custom_type_script = "uid://cy3uof1s3hbg7"

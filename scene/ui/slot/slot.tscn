@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqdx3b1ko8dmm"]
+
+[ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="1_rayvk"]
+[ext_resource type="Script" uid="uid://cwb571d5qnksy" path="res://scene/ui/slot/slot.gd" id="1_xnod1"]
+[ext_resource type="Script" uid="uid://d1ncygg84gb6m" path="res://scene/ui/slot/bg.gd" id="3_uow3e"]
+[ext_resource type="Script" uid="uid://27kpaxtd20dp" path="res://scene/ui/slot/icon.gd" id="4_6htvs"]
+
+[node name="Slot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xnod1")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_rayvk")
+script = ExtResource("3_uow3e")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+script = ExtResource("4_6htvs")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvsjamxlv4b6i"]
+[gd_scene load_steps=10 format=3 uid="uid://bvsjamxlv4b6i"]
 
 [ext_resource type="PackedScene" uid="uid://cuqjpjakitt7t" path="res://scene/player/player.tscn" id="1_8xedm"]
 [ext_resource type="Script" uid="uid://b20e18tpgsb68" path="res://scene/game/environment/environment.gd" id="2_pw1yp"]
+[ext_resource type="Script" uid="uid://c8dt46mk4nh5x" path="res://scene/game/game_input_control.gd" id="3_l2vx3"]
 
 [sub_resource type="Gradient" id="Gradient_8xedm"]
 offsets = PackedFloat32Array(0, 0.219178, 1)
@@ -88,3 +89,6 @@ shape = SubResource("RectangleShape2D_82mss")
 
 [node name="environment" type="Node2D" parent="."]
 script = ExtResource("2_pw1yp")
+
+[node name="GameInputControl" type="Node" parent="."]
+script = ExtResource("3_l2vx3")
