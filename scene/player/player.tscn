@@ -1,28 +1,114 @@
-[gd_scene load_steps=15 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=22 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
 [ext_resource type="Shape2D" uid="uid://kg2fnu2m7bs8" path="res://scene/player/collision_shape/normal.tres" id="2_qjg4s"]
 [ext_resource type="Script" uid="uid://b2srfyujbqh53" path="res://scene/player/idle.gd" id="3_732fb"]
 [ext_resource type="Script" uid="uid://brqbum8ooxk1j" path="res://class/state_machine/state.gd" id="3_ajqqa"]
+[ext_resource type="Texture2D" uid="uid://clsuo7nma676m" path="res://asset/animation/long_attack.png" id="3_oen5c"]
+[ext_resource type="Script" uid="uid://dleqdmeta5ngk" path="res://scene/player/reverse.gd" id="4_5g408"]
 [ext_resource type="Script" uid="uid://dpghkfluquonl" path="res://scene/player/game_input_control.gd" id="4_5lop3"]
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
 [ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
+[ext_resource type="Script" uid="uid://ckqlmesknm4ku" path="res://class/my_sprite/my_sprite.gd" id="5_lrcci"]
 [ext_resource type="Script" uid="uid://y8783jdrnede" path="res://scene/player/dash.gd" id="6_hfhxk"]
 [ext_resource type="Script" uid="uid://dgl1jud157h88" path="res://scene/player/climb.gd" id="7_oypl4"]
 [ext_resource type="Script" uid="uid://cniigpxsfg5e2" path="res://scene/player/crouch(machine).gd" id="10_p3aiu"]
 [ext_resource type="Script" uid="uid://4v4i80kt2x4i" path="res://scene/player/collision_management.gd" id="10_qjg4s"]
 [ext_resource type="Script" uid="uid://82wvb2w3wvc2" path="res://scene/player/crouch.gd" id="11_1wtbu"]
 [ext_resource type="Script" uid="uid://32cp2rxvpv1t" path="res://scene/player/attack_state_machine.gd" id="13_f5r2w"]
+[ext_resource type="Script" uid="uid://wj3ettm63kng" path="res://scene/player/long_attack.gd" id="16_sc4n2"]
+
+[sub_resource type="Animation" id="Animation_sc4n2"]
+length = 0.09
+step = 0.0001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sprite/LongAttack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.030303, 0.0606061),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sprite/LongAttack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0008, 0.0909091),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5g408"]
+resource_name = "long_attack"
+length = 0.09
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sprite/LongAttack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sprite/LongAttack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.09),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r2w"]
+_data = {
+&"RESET": SubResource("Animation_sc4n2"),
+&"long_attack": SubResource("Animation_5g408")
+}
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_5lop3")
 
-[node name="ani_move" type="AnimationPlayer" parent="."]
+[node name="ani_attack" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")
+libraries = {
+&"": SubResource("AnimationLibrary_f5r2w")
+}
+
+[node name="ani_move" type="AnimationPlayer" parent="."]
 
 [node name="main_collision" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_qjg4s")
+
+[node name="attack_collision" type="Node2D" parent="."]
+
+[node name="sprite" type="Node2D" parent="."]
+script = ExtResource("4_5g408")
+
+[node name="LongAttack" type="Sprite2D" parent="sprite"]
+visible = false
+position = Vector2(-112.625, 0)
+scale = Vector2(0.561875, 0.625)
+texture = ExtResource("3_oen5c")
+hframes = 3
+script = ExtResource("5_lrcci")
+metadata/_custom_type_script = "uid://ckqlmesknm4ku"
 
 [node name="move_state_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")
@@ -60,7 +146,6 @@ metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 [node name="Collision_management" type="Node" parent="."]
 script = ExtResource("10_qjg4s")
 init_state = "normal"
-is_debug = false
 
 [node name="normal" type="Node2D" parent="Collision_management"]
 script = ExtResource("3_ajqqa")
@@ -72,7 +157,20 @@ metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="attack_state_machine" type="Node" parent="."]
 script = ExtResource("13_f5r2w")
+init_state = "normal"
 metadata/_custom_type_script = "uid://bmh5pgvtmuds7"
+
+[node name="long_attack" type="Node2D" parent="attack_state_machine"]
+script = ExtResource("16_sc4n2")
+metadata/_custom_type_script = "uid://brqbum8ooxk1j"
+
+[node name="normal" type="Node2D" parent="attack_state_machine"]
+script = ExtResource("3_ajqqa")
+metadata/_custom_type_script = "uid://brqbum8ooxk1j"
+
+[node name="short_attack" type="Node2D" parent="attack_state_machine"]
+script = ExtResource("3_ajqqa")
+metadata/_custom_type_script = "uid://brqbum8ooxk1j"
 
 [node name="GameInputControl" type="Node" parent="."]
 script = ExtResource("4_5lop3")
@@ -103,12 +201,6 @@ position = Vector2(0, 24)
 scale = Vector2(-1, -1)
 target_position = Vector2(12.5, 0)
 
-[node name="debug" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -48.0
-offset_right = 20.0
-offset_bottom = -25.0
-
 [node name="left_head" type="RayCast2D" parent="."]
 position = Vector2(-10, -13)
 target_position = Vector2(0, -14)
@@ -116,3 +208,15 @@ target_position = Vector2(0, -14)
 [node name="right_head" type="RayCast2D" parent="."]
 position = Vector2(10, -13)
 target_position = Vector2(0, -14)
+
+[node name="debug" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -25.0
+
+[node name="attack_mode" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -73.0
+offset_right = 16.0
+offset_bottom = -50.0

@@ -8,7 +8,7 @@ var prev_state:State
 
 var cur_state_name;#远程调试方便
 var gameInputControl:GameInputControl;
-@export var is_debug=true
+@export var is_debug:bool=false
 ##state_machine的初始化函数
 ##[br]
 ##[param obj]:CharacterBody2D[br]
