@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("setting"):
 			get_tree().change_scene_to_file("res://scene/ui/start_menu/ui.tscn")
-			print(1)
+			

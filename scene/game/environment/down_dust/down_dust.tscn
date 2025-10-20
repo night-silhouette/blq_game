@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs622523c5ehe"]
+
+[ext_resource type="Script" uid="uid://dr4oyvyhhnw1q" path="res://scene/game/environment/down_dust/down_dust.gd" id="1_0dqqv"]
+[ext_resource type="Texture2D" uid="uid://n3mmocgnqxvt" path="res://asset/animation/down_dust.png" id="2_777yf"]
+
+[sub_resource type="Animation" id="Animation_wp2yy"]
+resource_name = "DownDust"
+length = 0.24
+step = 0.06
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DownDust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0588235, 0.117647, 0.176471),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_0dqqv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DownDust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ay5wk"]
+_data = {
+&"DownDust": SubResource("Animation_wp2yy"),
+&"RESET": SubResource("Animation_0dqqv")
+}
+
+[node name="DownDust" type="Node2D"]
+script = ExtResource("1_0dqqv")
+
+[node name="DownDust" type="Sprite2D" parent="."]
+position = Vector2(-7, 0)
+scale = Vector2(0.263184, 0.257813)
+texture = ExtResource("2_777yf")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ay5wk")
+}

@@ -275,13 +275,7 @@ layout_mode = 2
 [node name="Slot11" parent="铭文库/GridContainer" groups=["mingwenku_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
 
-[node name="SlotTexture" type="TextureRect" parent="铭文库/GridContainer/Slot11"]
-layout_mode = 2
-
 [node name="Slot12" parent="铭文库/GridContainer" groups=["mingwenku_slot"] instance=ExtResource("9_2d6xq")]
-layout_mode = 2
-
-[node name="SlotTexture" type="TextureRect" parent="铭文库/GridContainer/Slot12"]
 layout_mode = 2
 
 [node name="Slot13" parent="铭文库/GridContainer" groups=["mingwenku_slot"] instance=ExtResource("9_2d6xq")]
@@ -894,6 +888,10 @@ offset_bottom = 716.0
 theme = SubResource("Theme_qnnce")
 theme_override_font_sizes/font_size = 30
 text = "返回"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(828, 310)
+zoom = Vector2(0.65, 0.65)
 
 [connection signal="pressed" from="铭文库/change/Button" to="." method="switch_to_equipment_panel"]
 [connection signal="pressed" from="资源库/change/Button" to="." method="switch_to_weapon_panel"]
