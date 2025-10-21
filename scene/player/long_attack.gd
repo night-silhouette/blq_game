@@ -1,5 +1,7 @@
 extends State
+@onready var sprite=$"../../sprite"
 func enter():
+	sprite.attack_reversed.emit()
 	$"../../sprite/LongAttack".can_reverse=false
 	self.is_use=false
 	animation_player.play("long_attack")

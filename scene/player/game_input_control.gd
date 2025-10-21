@@ -40,6 +40,8 @@ func is_crouch_temp():
 		else :
 			return true
 		
+var column_dir
+		
 var is_switch:bool=false
 var is_jump:bool=false
 var is_dash:bool=false
@@ -55,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		dash_control_flag=true
 	
 	row_dir=Input.get_axis("move_l","move_r")
-	
+	column_dir=Input.get_axis("up","down")
 	
 	is_crouch=is_crouch_temp()
 	is_attack=Input.is_action_just_pressed("attack")

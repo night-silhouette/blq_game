@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=24 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
 [ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
 [ext_resource type="Script" uid="uid://ckqlmesknm4ku" path="res://class/my_sprite/my_sprite.gd" id="5_lrcci"]
+[ext_resource type="Texture2D" uid="uid://hfeitdreclme" path="res://asset/animation/short_attack.png" id="6_fspl2"]
 [ext_resource type="Script" uid="uid://y8783jdrnede" path="res://scene/player/dash.gd" id="6_hfhxk"]
 [ext_resource type="Script" uid="uid://dgl1jud157h88" path="res://scene/player/climb.gd" id="7_oypl4"]
 [ext_resource type="Script" uid="uid://cniigpxsfg5e2" path="res://scene/player/crouch(machine).gd" id="10_p3aiu"]
@@ -46,6 +47,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../sprite/ShortAttack:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_5g408"]
 resource_name = "long_attack"
@@ -76,10 +89,28 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_eeiom"]
+resource_name = "short_attack"
+length = 0.12
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../sprite/ShortAttack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.030303, 0.0606061, 0.0909091),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r2w"]
 _data = {
 &"RESET": SubResource("Animation_sc4n2"),
-&"long_attack": SubResource("Animation_5g408")
+&"long_attack": SubResource("Animation_5g408"),
+&"short_attack": SubResource("Animation_eeiom")
 }
 
 [node name="player" type="CharacterBody2D"]
@@ -103,12 +134,19 @@ script = ExtResource("4_5g408")
 
 [node name="LongAttack" type="Sprite2D" parent="sprite"]
 visible = false
-position = Vector2(-112.625, 0)
-scale = Vector2(0.561875, 0.625)
+position = Vector2(0.01606, 0)
+scale = Vector2(0.629219, 1.32813)
 texture = ExtResource("3_oen5c")
+offset = Vector2(-200.522, 0)
 hframes = 3
 script = ExtResource("5_lrcci")
 metadata/_custom_type_script = "uid://ckqlmesknm4ku"
+
+[node name="ShortAttack" type="Sprite2D" parent="sprite"]
+position = Vector2(48, -37)
+scale = Vector2(0.458726, 0.37212)
+texture = ExtResource("6_fspl2")
+hframes = 4
 
 [node name="move_state_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")

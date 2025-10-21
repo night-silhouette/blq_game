@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cp0yq0tiw5p7b"]
+[gd_scene load_steps=38 format=3 uid="uid://cp0yq0tiw5p7b"]
 
 [ext_resource type="Script" uid="uid://dl7iatb046at" path="res://scene/ui/start_menu/ui.gd" id="1_4fyha"]
 [ext_resource type="Texture2D" uid="uid://dbsfb7jikx27j" path="res://asset/image/tile_0003.png" id="1_psp42"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://crfn500pi4m1b" path="res://scene/ui/slot/left_grid_container.gd" id="10_0sjbt"]
 [ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="10_adnce"]
 [ext_resource type="Resource" uid="uid://ccryrej5vasu5" path="res://scene/Resources/Items/蓝色药水.tres" id="14_0sjbt"]
+[ext_resource type="Script" uid="uid://da2uw4i2d5msx" path="res://scene/ui/start_menu/back.gd" id="14_uvuoi"]
 [ext_resource type="Resource" uid="uid://hmg8idgkai86" path="res://scene/Resources/Items/红色药水.tres" id="15_uvuoi"]
 [ext_resource type="Resource" uid="uid://44dhrdsg62ql" path="res://scene/Resources/Items/蓝水晶法杖.tres" id="16_fjm67"]
 [ext_resource type="Resource" uid="uid://7teti7ss4px5" path="res://scene/Resources/Items/紫水晶法杖.tres" id="17_cvtyo"]
@@ -450,6 +451,7 @@ offset_bottom = 716.0
 theme = SubResource("Theme_qnnce")
 theme_override_font_sizes/font_size = 30
 text = "返回"
+script = ExtResource("14_uvuoi")
 
 [node name="背包" type="NinePatchRect" parent="铭文库"]
 layout_mode = 0

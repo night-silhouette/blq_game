@@ -1,7 +1,7 @@
 extends Node2D
 @onready var obj=$".."
-
-signal reverse_h()
+@onready var gameinputcontrol=$"../GameInputControl"
+signal attack_reversed()
 
 @onready var children=get_children()
 func _ready() -> void:
@@ -14,17 +14,25 @@ func _ready() -> void:
 		var texture=child.get_texture()
 		var w=texture.get_width()
 		var h=texture.get_height()
-		reverse_h.connect(func():
-			if child.can_reverse:
+		attack_reversed.connect(func():
 
-					child.flip_h=not child.flip_h
-					child.offset.x+= -w/child.hframes if (!child.flip_h) else w/child.hframes
+			if gameinputcontrol.column_dir==0:
+				if (obj.face_dir==1):
+					child.rotation=PI
+				elif (obj.face_dir==-1):
+					child.rotation=-2*PI
+			else:
+				if gameinputcontrol.column_dir==1:
+					child.rotation=3*PI/2
+				else:
+					child.rotation=PI/2
+					
+			
+		
 			
 			)
 func _physics_process(delta: float) -> void:
-	for child in children:
-		if (child.flip_h and obj.face_dir==-1) or (!child.flip_h and obj.face_dir==1):
-			reverse_h.emit()
+	pass
 			
 			
 			

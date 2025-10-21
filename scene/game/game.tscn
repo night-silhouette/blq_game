@@ -32,6 +32,7 @@ size = Vector2(20, 279)
 position = Vector2(385, 230)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(1.21, 1.21)
 
 [node name="PointLight2D" type="PointLight2D" parent="player"]
 position = Vector2(-3.09944e-06, 4.76837e-07)
