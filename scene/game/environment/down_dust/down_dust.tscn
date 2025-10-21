@@ -45,8 +45,8 @@ _data = {
 script = ExtResource("1_0dqqv")
 
 [node name="DownDust" type="Sprite2D" parent="."]
-position = Vector2(-7, 0)
-scale = Vector2(0.263184, 0.257813)
+position = Vector2(-7, 12)
+scale = Vector2(0.171265, 0.158203)
 texture = ExtResource("2_777yf")
 hframes = 4
 

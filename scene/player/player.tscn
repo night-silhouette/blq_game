@@ -1,17 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=25 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
 [ext_resource type="Shape2D" uid="uid://kg2fnu2m7bs8" path="res://scene/player/collision_shape/normal.tres" id="2_qjg4s"]
 [ext_resource type="Script" uid="uid://b2srfyujbqh53" path="res://scene/player/idle.gd" id="3_732fb"]
 [ext_resource type="Script" uid="uid://dby1spka0hb1q" path="res://class/state_machine/state.gd" id="3_ajqqa"]
-[ext_resource type="Texture2D" uid="uid://clsuo7nma676m" path="res://asset/animation/long_attack.png" id="3_oen5c"]
+[ext_resource type="Texture2D" uid="uid://ccahny45qv6my" path="res://asset/animation/long_attack.png" id="3_oen5c"]
 [ext_resource type="Script" uid="uid://dleqdmeta5ngk" path="res://scene/player/reverse.gd" id="4_5g408"]
 [ext_resource type="Script" uid="uid://dpghkfluquonl" path="res://scene/player/game_input_control.gd" id="4_5lop3"]
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
 [ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
 [ext_resource type="Script" uid="uid://ckqlmesknm4ku" path="res://class/my_sprite/my_sprite.gd" id="5_lrcci"]
-[ext_resource type="Texture2D" uid="uid://hfeitdreclme" path="res://asset/animation/short_attack.png" id="6_fspl2"]
+[ext_resource type="Texture2D" uid="uid://cchlgyw57ropj" path="res://asset/animation/short_attack.png" id="6_fspl2"]
 [ext_resource type="Script" uid="uid://y8783jdrnede" path="res://scene/player/dash.gd" id="6_hfhxk"]
 [ext_resource type="Script" uid="uid://dgl1jud157h88" path="res://scene/player/climb.gd" id="7_oypl4"]
 [ext_resource type="Script" uid="uid://cniigpxsfg5e2" path="res://scene/player/crouch(machine).gd" id="10_p3aiu"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://82wvb2w3wvc2" path="res://scene/player/crouch.gd" id="11_1wtbu"]
 [ext_resource type="Script" uid="uid://32cp2rxvpv1t" path="res://scene/player/attack_state_machine.gd" id="13_f5r2w"]
 [ext_resource type="Script" uid="uid://wj3ettm63kng" path="res://scene/player/long_attack.gd" id="16_sc4n2"]
+[ext_resource type="Script" uid="uid://uo1gyuj5crun" path="res://scene/player/short_attack.gd" id="19_eeiom"]
 
 [sub_resource type="Animation" id="Animation_sc4n2"]
 length = 0.09
@@ -59,6 +60,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../sprite/ShortAttack:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../sprite/ShortAttack:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_5g408"]
 resource_name = "long_attack"
@@ -92,7 +117,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_eeiom"]
 resource_name = "short_attack"
 length = 0.12
-step = 0.03
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -100,10 +125,34 @@ tracks/0/path = NodePath("../sprite/ShortAttack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.030303, 0.0606061, 0.0909091),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.104785),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../sprite/ShortAttack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.119785),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../sprite/ShortAttack:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(9.57077e-05, 0.0143457, 0.07, 0.11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.88634, 0.204737, 4.48579e-05, 1), Color(0.859743, 0, 0.249909, 1), Color(0.697164, 1.40542e-05, 0.195716, 1), Color(0.472087, 0.0959113, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r2w"]
@@ -133,20 +182,21 @@ shape = ExtResource("2_qjg4s")
 script = ExtResource("4_5g408")
 
 [node name="LongAttack" type="Sprite2D" parent="sprite"]
-visible = false
-position = Vector2(0.01606, 0)
-scale = Vector2(0.629219, 1.32813)
+position = Vector2(0.00331217, 0)
+scale = Vector2(0.758, 1.328)
 texture = ExtResource("3_oen5c")
-offset = Vector2(-200.522, 0)
+offset = Vector2(199.974, 0)
 hframes = 3
 script = ExtResource("5_lrcci")
 metadata/_custom_type_script = "uid://ckqlmesknm4ku"
 
 [node name="ShortAttack" type="Sprite2D" parent="sprite"]
-position = Vector2(48, -37)
-scale = Vector2(0.458726, 0.37212)
+scale = Vector2(0.405629, 0.424882)
 texture = ExtResource("6_fspl2")
-hframes = 4
+offset = Vector2(106.016, -7.29541)
+hframes = 9
+script = ExtResource("5_lrcci")
+metadata/_custom_type_script = "uid://ckqlmesknm4ku"
 
 [node name="move_state_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")
@@ -195,7 +245,7 @@ script = ExtResource("16_sc4n2")
 script = ExtResource("3_ajqqa")
 
 [node name="short_attack" type="Node2D" parent="attack_state_machine"]
-script = ExtResource("3_ajqqa")
+script = ExtResource("19_eeiom")
 
 [node name="GameInputControl" type="Node" parent="."]
 script = ExtResource("4_5lop3")

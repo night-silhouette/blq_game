@@ -22,7 +22,8 @@ extends CharacterBody2D
 @export var dash_speed=700;
 @export var dash_span=0.65
 @export var max_fall_speed=100
-@export var attack_span=0.4
+@export var long_attack_span=0.4
+@export var short_attack_span=0.3
 var is_special_state=false
 func _ready():
 	

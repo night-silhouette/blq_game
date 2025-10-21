@@ -4,8 +4,12 @@ extends Node2D
 signal attack_reversed()
 
 @onready var children=get_children()
+
+
+var scale_dir={}
 func _ready() -> void:
-	
+	for child in children:
+		scale_dir[child]=child.scale
 	
 	
 	
@@ -15,24 +19,32 @@ func _ready() -> void:
 		var w=texture.get_width()
 		var h=texture.get_height()
 		attack_reversed.connect(func():
-
-			if gameinputcontrol.column_dir==0:
-				if (obj.face_dir==1):
-					child.rotation=PI
-				elif (obj.face_dir==-1):
-					child.rotation=-2*PI
-			else:
-				if gameinputcontrol.column_dir==1:
-					child.rotation=3*PI/2
-				else:
+			if child.can_reverse:
+				if gameinputcontrol.column_dir==0 and obj.face_dir>0:
+					child.scale=scale_dir[child]
+					child.rotation=0
+				elif gameinputcontrol.column_dir==0 and obj.face_dir<0:
+					child.scale.x=-scale_dir[child].x
+					child.scale.y=scale_dir[child].y
+					child.rotation=0
+				elif gameinputcontrol.column_dir==1:
+					child.scale.x=scale_dir[child].x
 					child.rotation=PI/2
-					
-			
-		
-			
-			)
+					if obj.face_dir>0:
+						child.scale.y=-scale_dir[child].y
+					if obj.face_dir<0:
+						child.scale.y=scale_dir[child].y
+				elif gameinputcontrol.column_dir==-1:
+					child.scale.x=scale_dir[child].x
+					child.rotation=-PI/2
+					if obj.face_dir>0:
+						child.scale.y=scale_dir[child].y
+					if obj.face_dir<0:
+						child.scale.y=-scale_dir[child].y
+		)
 func _physics_process(delta: float) -> void:
 	pass
+
 			
 			
 			
