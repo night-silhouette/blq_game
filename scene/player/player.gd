@@ -14,6 +14,9 @@ extends CharacterBody2D
 @onready var attack_state_machine=$attack_state_machine
 @onready var sprite=$sprite
 
+
+@export_category("properties")#------------------------------------------------
+@export_group("physical_prop")
 @export var accerleration=2500;
 @export var speed=230;
 @export var friction=3000;
@@ -22,8 +25,16 @@ extends CharacterBody2D
 @export var dash_speed=700;
 @export var dash_span=0.65
 @export var max_fall_speed=100
+
+@export_group("attack_prop")
 @export var long_attack_span=0.4
 @export var short_attack_span=0.3
+
+@export_group("state_prop")
+@export var Max_HP:float
+@export var now_HP:float
+
+
 var is_special_state=false
 func _ready():
 	

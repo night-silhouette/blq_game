@@ -20,7 +20,8 @@ func init(obj: CharacterBody2D, animation_player:AnimationPlayer=null, gameInput
 			print("%s->%s"%[pre.name,cur.name]))
 	self.obj = obj
 	self.gameInputControl=gameInputControl
-	gameInputControl.obj=obj
+	if gameInputControl:
+		gameInputControl.obj=obj
 	set_all_children_init(get_children(), obj, animation_player,gameInputControl)
 	
 	var start_state = state_map.get(init_state.to_lower())

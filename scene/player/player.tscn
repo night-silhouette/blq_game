@@ -27,7 +27,7 @@ step = 0.0001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../sprite/LongAttack:frame")
+tracks/0/path = NodePath("../attack_sprite/LongAttack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -39,7 +39,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../sprite/LongAttack:visible")
+tracks/1/path = NodePath("../attack_sprite/LongAttack:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -51,7 +51,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../sprite/ShortAttack:frame")
+tracks/2/path = NodePath("../attack_sprite/ShortAttack:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -63,7 +63,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../sprite/ShortAttack:visible")
+tracks/3/path = NodePath("../attack_sprite/ShortAttack:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -75,7 +75,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../sprite/ShortAttack:modulate")
+tracks/4/path = NodePath("../attack_sprite/ShortAttack:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -83,6 +83,42 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../attack_area/attack:polygon")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array()]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../attack_area/attack:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../attack_area/attack:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5g408"]
@@ -92,7 +128,7 @@ step = 0.03
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../sprite/LongAttack:frame")
+tracks/0/path = NodePath("../attack_sprite/LongAttack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -104,7 +140,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../sprite/LongAttack:visible")
+tracks/1/path = NodePath("../attack_sprite/LongAttack:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -121,7 +157,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../sprite/ShortAttack:frame")
+tracks/0/path = NodePath("../attack_sprite/ShortAttack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +169,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../sprite/ShortAttack:visible")
+tracks/1/path = NodePath("../attack_sprite/ShortAttack:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -145,7 +181,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../sprite/ShortAttack:modulate")
+tracks/2/path = NodePath("../attack_sprite/ShortAttack:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -153,6 +189,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.88634, 0.204737, 4.48579e-05, 1), Color(0.859743, 0, 0.249909, 1), Color(0.697164, 1.40542e-05, 0.195716, 1), Color(0.472087, 0.0959113, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../attack_area/attack:polygon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0432928, 0.0845786, 0.11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(-16, 58, 34, 32, 30, 10, 9, -6, 8, 22), PackedVector2Array(-18, 61, 46, 49, 43, 24, 26, -2, 18, 28), PackedVector2Array(-15, 59, 47, 54, 46, 30, 32, 0, 21, 1, 19, 31, 3, 52), PackedVector2Array(-17, 60, 42, 60, 47, 34, 34, -2, 27, 26, 10, 49)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../attack_area/attack:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../attack_area/attack:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r2w"]
@@ -176,25 +248,28 @@ libraries = {
 [node name="main_collision" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_qjg4s")
 
-[node name="attack_collision" type="Node2D" parent="."]
+[node name="attack_area" type="Area2D" parent="."]
 
-[node name="sprite" type="Node2D" parent="."]
+[node name="attack" type="CollisionPolygon2D" parent="attack_area"]
+position = Vector2(27, -42)
+
+[node name="attack_sprite" type="Node2D" parent="."]
 script = ExtResource("4_5g408")
 
-[node name="LongAttack" type="Sprite2D" parent="sprite"]
+[node name="ShortAttack" type="Sprite2D" parent="attack_sprite"]
+scale = Vector2(0.405629, 0.424882)
+texture = ExtResource("6_fspl2")
+offset = Vector2(106.016, -7.29541)
+hframes = 9
+script = ExtResource("5_lrcci")
+metadata/_custom_type_script = "uid://ckqlmesknm4ku"
+
+[node name="LongAttack" type="Sprite2D" parent="attack_sprite"]
 position = Vector2(0.00331217, 0)
 scale = Vector2(0.758, 1.328)
 texture = ExtResource("3_oen5c")
 offset = Vector2(199.974, 0)
 hframes = 3
-script = ExtResource("5_lrcci")
-metadata/_custom_type_script = "uid://ckqlmesknm4ku"
-
-[node name="ShortAttack" type="Sprite2D" parent="sprite"]
-scale = Vector2(0.405629, 0.424882)
-texture = ExtResource("6_fspl2")
-offset = Vector2(106.016, -7.29541)
-hframes = 9
 script = ExtResource("5_lrcci")
 metadata/_custom_type_script = "uid://ckqlmesknm4ku"
 
