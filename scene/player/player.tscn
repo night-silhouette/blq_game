@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cuqjpjakitt7t"]
+[gd_scene load_steps=26 format=3 uid="uid://cuqjpjakitt7t"]
 
 [ext_resource type="Script" uid="uid://co0nju7v0deme" path="res://scene/player/player.gd" id="1_5lop3"]
 [ext_resource type="Script" uid="uid://b6ey5m80desqf" path="res://scene/player/state_machine.gd" id="2_732fb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dleqdmeta5ngk" path="res://scene/player/reverse.gd" id="4_5g408"]
 [ext_resource type="Script" uid="uid://dpghkfluquonl" path="res://scene/player/game_input_control.gd" id="4_5lop3"]
 [ext_resource type="Script" uid="uid://cvb806rq8f1h" path="res://scene/player/run.gd" id="4_732fb"]
+[ext_resource type="Script" uid="uid://cuxg83xtdj7io" path="res://scene/player/attack_area.gd" id="4_gt2ev"]
 [ext_resource type="Script" uid="uid://0w2s4vpx4iqq" path="res://scene/player/jump.gd" id="5_732fb"]
 [ext_resource type="Script" uid="uid://ckqlmesknm4ku" path="res://class/my_sprite/my_sprite.gd" id="5_lrcci"]
 [ext_resource type="Texture2D" uid="uid://cchlgyw57ropj" path="res://asset/animation/short_attack.png" id="6_fspl2"]
@@ -87,7 +88,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../attack_area/attack:polygon")
+tracks/5/path = NodePath("../attack_sprite/attack_area/attack:polygon")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -99,7 +100,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../attack_area/attack:disabled")
+tracks/6/path = NodePath("../attack_sprite/attack_area/attack:disabled")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -111,7 +112,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../attack_area/attack:visible")
+tracks/7/path = NodePath("../attack_sprite/attack_area/attack:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -193,7 +194,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../attack_area/attack:polygon")
+tracks/3/path = NodePath("../attack_sprite/attack_area/attack:polygon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -205,7 +206,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../attack_area/attack:disabled")
+tracks/4/path = NodePath("../attack_sprite/attack_area/attack:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -217,7 +218,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../attack_area/attack:visible")
+tracks/5/path = NodePath("../attack_sprite/attack_area/attack:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -248,13 +249,14 @@ libraries = {
 [node name="main_collision" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_qjg4s")
 
-[node name="attack_area" type="Area2D" parent="."]
-
-[node name="attack" type="CollisionPolygon2D" parent="attack_area"]
-position = Vector2(27, -42)
-
 [node name="attack_sprite" type="Node2D" parent="."]
 script = ExtResource("4_5g408")
+
+[node name="attack_area" type="Area2D" parent="attack_sprite"]
+script = ExtResource("4_gt2ev")
+
+[node name="attack" type="CollisionPolygon2D" parent="attack_sprite/attack_area"]
+position = Vector2(27, -42)
 
 [node name="ShortAttack" type="Sprite2D" parent="attack_sprite"]
 scale = Vector2(0.405629, 0.424882)
