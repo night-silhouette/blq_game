@@ -3,4 +3,6 @@ extends Enemy
 
 func _ready() -> void:
 	super._ready()
-	hp.text=str(now_HP)
+
+func _process(delta: float) -> void:
+	hp.text=str(now_HP)+"hp"

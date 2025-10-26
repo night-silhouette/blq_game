@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var back_body=$back_body
 @onready var debug=$debug
 @onready var attack_state_machine=$attack_state_machine
-@onready var sprite=$sprite
+
 
 
 @export_category("properties")#------------------------------------------------
@@ -29,11 +29,13 @@ extends CharacterBody2D
 @export_group("attack_prop")
 @export var long_attack_span=0.4
 @export var short_attack_span=0.3
-
+@export var long_attack_coefficient=1
+@export var short_attack_coefficient=1.2
 
 @export_group("state_prop")
 @export var Max_HP:float=100
 @export var now_HP:float=100
+@export var damage=30
 
 
 var is_special_state=false
@@ -43,7 +45,7 @@ func _ready():
 	move_state_machine.init(self,ani_move,gameInputControl)
 	collision_management.init(self,null,gameInputControl)
 	attack_state_machine.init(self,ani_attack,gameInputControl)
-	#init state_machine --ending--
+	#init state_machine    --ending--
 	
 	
 	@warning_ignore("unused_parameter")

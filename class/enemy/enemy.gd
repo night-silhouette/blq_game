@@ -17,6 +17,8 @@ class_name	Enemy
 	set(value):
 		if (value>Max_HP):
 			now_HP=Max_HP
+		elif(value<0):
+			now_HP=0
 		else :
 			now_HP=value
 
@@ -40,6 +42,12 @@ func _physics_process(delta: float) -> void:
 	velocity.y+=GlobalValue.gravity
 	
 	move_and_slide()
-	
+
+var hurt_lock=true
+func be_hurted(damage):
+	if hurt_lock:
+		hurt_lock=false
+		get_tree().create_timer(0.12).timeout.connect(func():hurt_lock=true)
+		now_HP-=damage
 	
 	

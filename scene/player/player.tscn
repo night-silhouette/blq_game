@@ -279,6 +279,7 @@ long_attack_span = 0.45
 
 [node name="ani_attack" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")
+callback_mode_process = 0
 libraries = {
 &"": SubResource("AnimationLibrary_f5r2w")
 }
@@ -293,7 +294,7 @@ script = ExtResource("4_5g408")
 
 [node name="attack_area" type="Area2D" parent="attack_sprite"]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("4_gt2ev")
 
 [node name="attack" type="CollisionPolygon2D" parent="attack_sprite/attack_area"]
