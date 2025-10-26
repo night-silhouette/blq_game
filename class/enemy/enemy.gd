@@ -12,8 +12,15 @@ class_name	Enemy
 
 @export_category("properties")#------------------------------------------------
 @export_group("state_prop")
-@export var Max_HP:float
-@export var now_HP:float
+@export var Max_HP:float 
+@export var now_HP:float :
+	set(value):
+		if (value>Max_HP):
+			now_HP=Max_HP
+		else :
+			now_HP=value
+
+
 
 
 @onready var behavior_machine: State_machine = get_node(behavior_machine_path)#主状态机，管理行为
@@ -24,7 +31,10 @@ func _ready() -> void:
 	behavior_machine.init(self)
 	physical_machine.init(self)
 	collision_machine.init(self)
-	
+	set_collision_layer_value(3,true)
+	set_collision_layer_value(1,false)
+	set_collision_mask_value(2,true)
+	set_collision_mask_value(3,true)
 	
 func _physics_process(delta: float) -> void:
 	velocity.y+=GlobalValue.gravity

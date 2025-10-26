@@ -30,9 +30,10 @@ extends CharacterBody2D
 @export var long_attack_span=0.4
 @export var short_attack_span=0.3
 
+
 @export_group("state_prop")
-@export var Max_HP:float
-@export var now_HP:float
+@export var Max_HP:float=100
+@export var now_HP:float=100
 
 
 var is_special_state=false

@@ -125,7 +125,7 @@ tracks/7/keys = {
 [sub_resource type="Animation" id="Animation_5g408"]
 resource_name = "long_attack"
 length = 0.09
-step = 0.03
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -149,6 +149,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../attack_sprite/attack_area/attack:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.09),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../attack_sprite/attack_area/attack:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.09),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../attack_sprite/attack_area/attack:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0325823, 0.0622522),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(34, 32, 143, 34, 132, 43, -2, 42, -2, 37, 35, 37), PackedVector2Array(-2, 42, 162, 42, 162, 29, 36, 29, 36, 37, -2, 37), PackedVector2Array(8, 43, 158, 42, 158, 24, 73, 25, 74, 33, 43, 32, 43, 38, 8, 38)]
 }
 
 [sub_resource type="Animation" id="Animation_eeiom"]
@@ -236,7 +272,10 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_5lop3")
+long_attack_span = 0.45
 
 [node name="ani_attack" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")
@@ -253,6 +292,8 @@ shape = ExtResource("2_qjg4s")
 script = ExtResource("4_5g408")
 
 [node name="attack_area" type="Area2D" parent="attack_sprite"]
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("4_gt2ev")
 
 [node name="attack" type="CollisionPolygon2D" parent="attack_sprite/attack_area"]
