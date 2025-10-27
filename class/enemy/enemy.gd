@@ -17,8 +17,9 @@ class_name	Enemy
 	set(value):
 		if (value>Max_HP):
 			now_HP=Max_HP
-		elif(value<0):
+		elif(value<=0):
 			now_HP=0
+			self.queue_free()
 		else :
 			now_HP=value
 
@@ -28,6 +29,10 @@ class_name	Enemy
 @onready var behavior_machine: State_machine = get_node(behavior_machine_path)#主状态机，管理行为
 @onready var physical_machine: State_machine = get_node(physical_machine_path)
 @onready var collision_machine: State_machine = get_node(collision_machine_path)
+
+
+
+
 
 func _ready() -> void:
 	behavior_machine.init(self)

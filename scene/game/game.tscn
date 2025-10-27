@@ -97,3 +97,9 @@ script = ExtResource("3_l2vx3")
 
 [node name="TheFirstTestEnemy" parent="." instance=ExtResource("4_82mss")]
 position = Vector2(147, 253)
+
+[node name="TheFirstTestEnemy2" parent="." instance=ExtResource("4_82mss")]
+position = Vector2(288, 252)
+
+[node name="TheFirstTestEnemy3" parent="." instance=ExtResource("4_82mss")]
+position = Vector2(303, 150)

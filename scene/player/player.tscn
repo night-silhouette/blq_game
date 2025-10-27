@@ -160,7 +160,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.09),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -222,10 +222,10 @@ tracks/2/path = NodePath("../attack_sprite/ShortAttack:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(9.57077e-05, 0.0143457, 0.07, 0.11),
+"times": PackedFloat32Array(9.57077e-05, 0.04, 0.09, 0.11),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.88634, 0.204737, 4.48579e-05, 1), Color(0.859743, 0, 0.249909, 1), Color(0.697164, 1.40542e-05, 0.195716, 1), Color(0.472087, 0.0959113, 0, 1)]
+"values": [Color(1, 0.684897, 0.610086, 1), Color(0.999972, 0.361231, 0.426697, 1), Color(0.999935, 0.249865, 0.362958, 1), Color(0.809497, 0.192516, 3.85046e-07, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -261,7 +261,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.12),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5r2w"]
@@ -276,6 +276,7 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5lop3")
 long_attack_span = 0.45
+short_attack_coefficient = 1.25
 
 [node name="ani_attack" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")
