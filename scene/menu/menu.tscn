@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://btn1462u1t8y6"]
+
+[ext_resource type="Texture2D" uid="uid://dbsfb7jikx27j" path="res://asset/image/tile_0003.png" id="1_7ruq5"]
+[ext_resource type="Script" uid="uid://dry8ymq6o3ufb" path="res://scene/ui/start_menu/new_game.gd" id="2_i0sq5"]
+[ext_resource type="Script" uid="uid://dhwsu87c8meqa" path="res://scene/ui/start_menu/continue.gd" id="3_respr"]
+[ext_resource type="Script" uid="uid://cjx0xrm4nrmm8" path="res://scene/ui/start_menu/settings.gd" id="4_als81"]
+[ext_resource type="Script" uid="uid://cv18rtp8b7s05" path="res://scene/ui/start_menu/save_load.gd" id="5_r1cnn"]
+[ext_resource type="Theme" uid="uid://u2n6r4snr8px" path="res://scene/theme/new_theme.tres" id="6_wvotf"]
+[ext_resource type="Script" uid="uid://cp0ows5n3vrqp" path="res://scene/ui/start_menu/quit_exit.gd" id="7_aou5u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyynd"]
+
+[sub_resource type="Theme" id="Theme_41ywu"]
+Button/styles/normal = SubResource("StyleBoxFlat_uyynd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adnce"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvtxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d6xq"]
+
+[sub_resource type="Theme" id="Theme_adnce"]
+Button/styles/hover = SubResource("StyleBoxFlat_adnce")
+Button/styles/normal = SubResource("StyleBoxFlat_fvtxj")
+Button/styles/pressed = SubResource("StyleBoxFlat_2d6xq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkmrp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf358"]
+
+[node name="Menu" type="NinePatchRect"]
+offset_right = 1153.0
+offset_bottom = 655.0
+texture = ExtResource("1_7ruq5")
+region_rect = Rect2(-4.88403, -3.15233, 41.991, 37.8589)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.5
+offset_top = -334.0
+offset_right = 276.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_41ywu")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="New Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_adnce")
+theme_override_font_sizes/font_size = 30
+text = "开始游戏"
+flat = true
+script = ExtResource("2_i0sq5")
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkmrp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf358")
+text = "继续游戏"
+flat = true
+script = ExtResource("3_respr")
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "设置"
+flat = true
+script = ExtResource("4_als81")
+
+[node name="Save_load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "存档"
+flat = true
+script = ExtResource("5_r1cnn")
+
+[node name="Quit_Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wvotf")
+theme_override_font_sizes/font_size = 30
+text = "退出"
+flat = true
+script = ExtResource("7_aou5u")

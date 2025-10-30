@@ -31,10 +31,12 @@ func is_empty() -> bool:
 func set_item(item: Item):
 	current_item = item
 	if current_item:
-		icon.texture = current_item.icon  # 显示物品图标
+		icon.texture = current_item.icon
+		icon.item_resource = current_item  # 关键：将Item传递给Icon
 		icon.visible = true
 	else:
-		icon.texture = null  # 清空图标
+		icon.texture = null
+		icon.item_resource = null  # 清空Icon的Item引用
 		icon.visible = false
 
 # 尝试放置物品（拖拽松开后执行）
@@ -55,7 +57,11 @@ func set_state(is_light_state: bool):
 	is_light = is_light_state
 	bg.texture = LIGHT_TEXTURE if is_light else DARK_TEXTURE
 		
-	
+		
+		
+		
+		
+		
 func _on_mouse_entered():
 	if item !=null:
 		owner.set_description(item)

@@ -50,8 +50,6 @@ extends CharacterBody2D
 		else :
 			now_HP=value
 
-
-
 var is_special_state=false
 var now_attack_dir=1    #1：上  2：下  3：左  4：右
 func _ready():
@@ -79,7 +77,6 @@ func _physics_process(delta: float) -> void:
 		$attack_mode.text="矛"
 	else:
 		$attack_mode.text="刀"
-	
 	if not is_special_state:#一些特殊状态 ban常规逻辑
 		velocity.y+=GlobalValue.gravity
 		if gameInputControl.row_dir>0:
@@ -104,8 +101,6 @@ func _physics_process(delta: float) -> void:
 			back_foot.scale.x*=-1
 			back_head.scale.x*=-1
 			back_body.scale.x*=-1
-			
-		
 		face_dir = new_face_dir
 		
 		

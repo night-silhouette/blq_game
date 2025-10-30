@@ -1,7 +1,7 @@
 extends Control
 
 # 引用BG节点（TextureRect）
-@onready var bg = $BG
+@onready var bg = self
 
 # 预加载亮/暗图片（替换为你的资源路径）
 const LIGHT_TEXTURE = preload("res://asset/image/tile_0013.png")

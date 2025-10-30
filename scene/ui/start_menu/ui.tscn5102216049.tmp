@@ -1,20 +1,45 @@
-[gd_scene load_steps=24 format=3 uid="uid://cp0yq0tiw5p7b"]
+[gd_scene load_steps=37 format=3 uid="uid://cp0yq0tiw5p7b"]
 
 [ext_resource type="Script" uid="uid://dl7iatb046at" path="res://scene/ui/start_menu/ui.gd" id="1_4fyha"]
+[ext_resource type="Texture2D" uid="uid://dbsfb7jikx27j" path="res://asset/image/tile_0003.png" id="1_psp42"]
 [ext_resource type="FontFile" uid="uid://bmwg8r1ycvvby" path="res://scene/font/fusion-pixel-12px-monospaced-zh_hans.ttf" id="2_fvtxj"]
+[ext_resource type="Script" uid="uid://dry8ymq6o3ufb" path="res://scene/ui/start_menu/new_game.gd" id="5_tbycw"]
+[ext_resource type="Script" uid="uid://dhwsu87c8meqa" path="res://scene/ui/start_menu/continue.gd" id="6_0sjbt"]
+[ext_resource type="Theme" uid="uid://u2n6r4snr8px" path="res://scene/theme/new_theme.tres" id="6_fvtxj"]
+[ext_resource type="Script" uid="uid://cjx0xrm4nrmm8" path="res://scene/ui/start_menu/settings.gd" id="7_uvuoi"]
+[ext_resource type="Script" uid="uid://cv18rtp8b7s05" path="res://scene/ui/start_menu/save_load.gd" id="8_fjm67"]
 [ext_resource type="Texture2D" uid="uid://b85wnw53kayvr" path="res://asset/image/tile_0000.png" id="8_uyynd"]
 [ext_resource type="PackedScene" uid="uid://bqdx3b1ko8dmm" path="res://scene/ui/slot/slot.tscn" id="9_2d6xq"]
+[ext_resource type="Script" uid="uid://cp0ows5n3vrqp" path="res://scene/ui/start_menu/quit_exit.gd" id="9_cvtyo"]
 [ext_resource type="Script" uid="uid://crfn500pi4m1b" path="res://scene/ui/slot/left_grid_container.gd" id="10_0sjbt"]
 [ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="10_adnce"]
 [ext_resource type="Resource" uid="uid://ccryrej5vasu5" path="res://scene/Resources/Items/蓝色药水.tres" id="14_0sjbt"]
-[ext_resource type="Script" uid="uid://bllytofbjkpk0" path="res://scene/ui/start_menu/back.gd" id="14_uvuoi"]
 [ext_resource type="Resource" uid="uid://hmg8idgkai86" path="res://scene/Resources/Items/红色药水.tres" id="15_uvuoi"]
 [ext_resource type="Resource" uid="uid://44dhrdsg62ql" path="res://scene/Resources/Items/蓝水晶法杖.tres" id="16_fjm67"]
 [ext_resource type="Resource" uid="uid://7teti7ss4px5" path="res://scene/Resources/Items/紫水晶法杖.tres" id="17_cvtyo"]
 [ext_resource type="Resource" uid="uid://c7syavjiy5u1k" path="res://scene/Resources/Items/蓝色小药水.tres" id="18_x7qk5"]
 [ext_resource type="Resource" uid="uid://dfbcm77802fqv" path="res://scene/Resources/Items/红色小药水.tres" id="19_mngwr"]
 [ext_resource type="Resource" uid="uid://opv8c15g4kri" path="res://scene/Resources/Items/白色药水.tres" id="20_o083g"]
-[ext_resource type="Script" uid="uid://27kpaxtd20dp" path="res://scene/ui/slot/icon.gd" id="21_uvuoi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyynd"]
+
+[sub_resource type="Theme" id="Theme_41ywu"]
+Button/styles/normal = SubResource("StyleBoxFlat_uyynd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adnce"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvtxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d6xq"]
+
+[sub_resource type="Theme" id="Theme_adnce"]
+Button/styles/hover = SubResource("StyleBoxFlat_adnce")
+Button/styles/normal = SubResource("StyleBoxFlat_fvtxj")
+Button/styles/pressed = SubResource("StyleBoxFlat_2d6xq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkmrp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf358"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbycw"]
 content_margin_left = 4.0
@@ -116,13 +141,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 121.0
-offset_top = 165.0
-offset_right = 269.0
-offset_bottom = 353.0
+offset_right = 101.0
+offset_bottom = 143.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.524056, 0.473928)
 script = ExtResource("1_4fyha")
 equipment_panel = NodePath("资源库/change/Button")
 weapon_panel = NodePath("铭文库/change/Button")
@@ -131,6 +153,73 @@ weapon_description = NodePath("铭文库/背包/Description")
 schoolbag_description = NodePath("铭文库/背包/Description")
 equipment_library = NodePath("资源库")
 weapon_library = NodePath("铭文库")
+
+[node name="Menu" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 655.0
+texture = ExtResource("1_psp42")
+region_rect = Rect2(-4.88403, -3.15233, 41.991, 37.8589)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 8
+patch_margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -279.5
+offset_top = -334.0
+offset_right = 276.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_41ywu")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="New Game" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_adnce")
+theme_override_font_sizes/font_size = 30
+text = "开始游戏"
+flat = true
+script = ExtResource("5_tbycw")
+
+[node name="Continue" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkmrp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf358")
+text = "继续游戏"
+flat = true
+script = ExtResource("6_0sjbt")
+
+[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "设置"
+flat = true
+script = ExtResource("7_uvuoi")
+
+[node name="Save_load" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "存档"
+flat = true
+script = ExtResource("8_fjm67")
+
+[node name="Quit_Exit" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_fvtxj")
+theme_override_font_sizes/font_size = 30
+text = "退出"
+flat = true
+script = ExtResource("9_cvtyo")
 
 [node name="铭文库" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -334,7 +423,6 @@ offset_left = 243.0
 offset_top = 185.0
 offset_right = 373.0
 offset_bottom = 352.0
-script = ExtResource("21_uvuoi")
 
 [node name="change" type="NinePatchRect" parent="铭文库"]
 layout_mode = 0
@@ -385,59 +473,52 @@ columns = 7
 
 [node name="Slot" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("20_o083g")
+item = ExtResource("14_0sjbt")
 
 [node name="Slot2" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("17_cvtyo")
+item = ExtResource("15_uvuoi")
 
 [node name="Slot3" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("19_mngwr")
+item = ExtResource("16_fjm67")
 
 [node name="Slot4" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("15_uvuoi")
+item = ExtResource("17_cvtyo")
 
 [node name="Slot5" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("16_fjm67")
+item = ExtResource("18_x7qk5")
 
 [node name="Slot6" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("18_x7qk5")
+item = ExtResource("19_mngwr")
 
 [node name="Slot7" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("14_0sjbt")
+item = ExtResource("20_o083g")
 
 [node name="Slot8" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("20_o083g")
 
 [node name="Slot9" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("17_cvtyo")
 
 [node name="Slot10" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("19_mngwr")
 
 [node name="Slot11" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("15_uvuoi")
 
 [node name="Slot12" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("16_fjm67")
 
 [node name="Slot13" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("18_x7qk5")
 
 [node name="Slot14" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("14_0sjbt")
 
 [node name="Slot15" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
@@ -573,10 +654,10 @@ offset_bottom = 344.0
 
 [node name="Icon" type="TextureRect" parent="铭文库/背包/Description"]
 layout_mode = 0
-offset_left = 245.164
-offset_top = 185.103
-offset_right = 375.164
-offset_bottom = 352.103
+offset_left = 243.0
+offset_top = 185.0
+offset_right = 373.0
+offset_bottom = 352.0
 
 [node name="资源库" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -804,8 +885,6 @@ offset_bottom = 716.0
 theme = SubResource("Theme_qnnce")
 theme_override_font_sizes/font_size = 30
 text = "返回"
-script = ExtResource("14_uvuoi")
 
-[connection signal="mouse_entered" from="铭文库/GridContainer" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="铭文库/change/Button" to="." method="switch_to_equipment_panel"]
 [connection signal="pressed" from="资源库/change/Button" to="." method="switch_to_weapon_panel"]
