@@ -21,8 +21,8 @@ func enter() :
 	
 	
 	if obj.is_back_has_rigid:
-		obj.velocity.y=-410
-		obj.velocity.x=370*obj.face_dir
+		obj.velocity.y=-420
+		obj.velocity.x=380*obj.face_dir
 		
 		
 	change_use_all(false)
