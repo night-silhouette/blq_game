@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg3qqxx02yept"]
+
+[ext_resource type="Texture2D" uid="uid://b13iubsrvq4uv" path="res://asset/image/粒子特效/血液.png" id="1_p1hwp"]
+
+[sub_resource type="Curve" id="Curve_rjh8j"]
+_data = [Vector2(0.225, 1), 0.0, 0.0, 0, 0, Vector2(0.45625, 0.910112), -0.556447, -0.556447, 0, 0, Vector2(0.6625, 0.741573), 0.0, 0.0, 0, 0, Vector2(0.8375, 0.483146), 0.0, 0.0, 0, 0, Vector2(0.95, 0.258427), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_gslol"]
+curve = SubResource("Curve_rjh8j")
+
+[sub_resource type="Curve" id="Curve_p1hwp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2375, 0.955056), 0.0, 0.0, 0, 0, Vector2(0.40625, 0.898876), 0.0, 0.0, 0, 0, Vector2(0.58125, 0.808989), -0.625305, -0.625305, 0, 0, Vector2(0.7, 0.741573), 0.0, 0.0, 0, 0, Vector2(0.83125, 0.651685), 0.0, 0.0, 0, 0, Vector2(0.925, 0.505618), 0.0, 0.0, 0, 0, Vector2(1, 0.247191), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="CurveTexture" id="CurveTexture_rjh8j"]
+curve = SubResource("Curve_p1hwp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0tn4t"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.196
+spread = 15.0
+initial_velocity_min = 250.0
+initial_velocity_max = 450.0
+gravity = Vector3(0, 298, 0)
+linear_accel_min = 38.33
+linear_accel_max = 48.33
+damping_min = 2000.0
+damping_max = 2000.0
+scale_min = 0.02
+scale_max = 0.07
+scale_curve = SubResource("CurveTexture_rjh8j")
+alpha_curve = SubResource("CurveTexture_gslol")
+
+[node name="spill_blood" type="GPUParticles2D"]
+scale = Vector2(2.32, 2.32)
+emitting = false
+texture = ExtResource("1_p1hwp")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.72
+process_material = SubResource("ParticleProcessMaterial_0tn4t")

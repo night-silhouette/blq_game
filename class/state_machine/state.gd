@@ -40,3 +40,6 @@ func animation_end_finished(next_state):
 	animation_player.animation_finished.connect(func(_t):
 		finished.emit(next_state),CONNECT_ONE_SHOT)
 	
+func change_use_all(flag:bool):
+	for item in state_machine.get_children():
+		item.is_use=flag

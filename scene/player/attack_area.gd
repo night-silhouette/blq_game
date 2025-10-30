@@ -6,7 +6,7 @@ var attack_lock=true
 
 
 func down_attack_jump():#下批
-	obj.velocity.y=-300
+	obj.velocity.y=-400
 
 
 func _ready() -> void:

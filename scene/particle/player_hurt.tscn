@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwp7ijcu8i8hx"]
+
+[ext_resource type="Texture2D" uid="uid://dacx7jetehfnx" path="res://asset/animation/player/hited.png" id="1_54i7e"]
+[ext_resource type="Script" uid="uid://dwn87rcw0gfqi" path="res://scene/particle/player_hurt.gd" id="2_lb3d2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcb5s"]
+atlas = ExtResource("1_54i7e")
+region = Rect2(0, 0, 699, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kes3"]
+atlas = ExtResource("1_54i7e")
+region = Rect2(699, 0, 699, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6teyf"]
+atlas = ExtResource("1_54i7e")
+region = Rect2(1398, 0, 699, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_py3hw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcb5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kes3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6teyf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[node name="PlayerHurt" type="AnimatedSprite2D"]
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_py3hw")
+frame_progress = 0.115322
+offset = Vector2(29.2683, 2.43902)
+script = ExtResource("2_lb3d2")

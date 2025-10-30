@@ -97,9 +97,14 @@ script = ExtResource("3_l2vx3")
 
 [node name="TheFirstTestEnemy" parent="." instance=ExtResource("4_82mss")]
 position = Vector2(147, 253)
+main_collision_path = NodePath("")
 
 [node name="TheFirstTestEnemy2" parent="." instance=ExtResource("4_82mss")]
-position = Vector2(288, 252)
+position = Vector2(498, 247)
+main_collision_path = NodePath("")
 
 [node name="TheFirstTestEnemy3" parent="." instance=ExtResource("4_82mss")]
 position = Vector2(303, 150)
+main_collision_path = NodePath("")
+Max_HP = 10000.0
+now_HP = 10000.0

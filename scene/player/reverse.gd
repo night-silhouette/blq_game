@@ -10,7 +10,7 @@ var scale_dir={}
 func _ready() -> void:
 	for child in children:
 		scale_dir[child]=child.scale
-	
+		
 	
 	
 
@@ -18,21 +18,25 @@ func _ready() -> void:
 
 		attack_reversed.connect(func():
 
-			if gameinputcontrol.column_dir==0 and obj.face_dir>0:
+			if gameinputcontrol.column_dir==0 and obj.face_dir>0:#右
+				obj.now_attack_dir=4
 				child.scale=scale_dir[child]
 				child.rotation=0
-			elif gameinputcontrol.column_dir==0 and obj.face_dir<0:
+			elif gameinputcontrol.column_dir==0 and obj.face_dir<0:#左
+				obj.now_attack_dir=3
 				child.scale.x=-scale_dir[child].x
 				child.scale.y=scale_dir[child].y
 				child.rotation=0
-			elif gameinputcontrol.column_dir==1:
+			elif gameinputcontrol.column_dir==1:#下
+				obj.now_attack_dir=2
 				child.scale.x=scale_dir[child].x
 				child.rotation=PI/2
 				if obj.face_dir>0:
 					child.scale.y=-scale_dir[child].y
 				if obj.face_dir<0:
 					child.scale.y=scale_dir[child].y
-			elif gameinputcontrol.column_dir==-1:
+			elif gameinputcontrol.column_dir==-1:#上
+				obj.now_attack_dir=1
 				child.scale.x=scale_dir[child].x
 				child.rotation=-PI/2
 				if obj.face_dir>0:

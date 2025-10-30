@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs622523c5ehe"]
 
 [ext_resource type="Script" uid="uid://dr4oyvyhhnw1q" path="res://scene/game/environment/down_dust/down_dust.gd" id="1_0dqqv"]
-[ext_resource type="Texture2D" uid="uid://n3mmocgnqxvt" path="res://asset/animation/down_dust.png" id="2_777yf"]
+[ext_resource type="Texture2D" uid="uid://n3mmocgnqxvt" path="res://asset/animation/player/down_dust.png" id="2_777yf"]
 
 [sub_resource type="Animation" id="Animation_wp2yy"]
 resource_name = "DownDust"

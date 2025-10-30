@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5we5miadg7i6"]
 
 [ext_resource type="Script" uid="uid://bh7ifiiglm7lm" path="res://scene/game/environment/jump_dust/jump_dust.gd" id="1_e7x47"]
-[ext_resource type="Texture2D" uid="uid://dk7c6qrx0bki1" path="res://asset/animation/environment_jump_dust.png" id="2_cmfkr"]
+[ext_resource type="Texture2D" uid="uid://dk7c6qrx0bki1" path="res://asset/animation/player/environment_jump_dust.png" id="2_cmfkr"]
 
 [sub_resource type="Animation" id="Animation_6xp7w"]
 length = 0.001

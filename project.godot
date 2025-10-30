@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalValue="*res://class/global/global_value.gd"
+Util="*res://class/util/util.gd"
+
+[global_group]
+
+player=""
 
 [input]
 

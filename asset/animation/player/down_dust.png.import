@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://n3mmocgnqxvt"
-path="res://.godot/imported/down_dust.png-9829184daf253c0646c6953cb0e8e7cd.ctex"
+path="res://.godot/imported/down_dust.png-8f02a1d899f663b0141ae228642104a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/animation/down_dust.png"
-dest_files=["res://.godot/imported/down_dust.png-9829184daf253c0646c6953cb0e8e7cd.ctex"]
+source_file="res://asset/animation/player/down_dust.png"
+dest_files=["res://.godot/imported/down_dust.png-8f02a1d899f663b0141ae228642104a8.ctex"]
 
 [params]
 
