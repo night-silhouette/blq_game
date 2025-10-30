@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cp0yq0tiw5p7b"]
+[gd_scene load_steps=37 format=3 uid="uid://cp0yq0tiw5p7b"]
 
 [ext_resource type="Script" uid="uid://dl7iatb046at" path="res://scene/ui/start_menu/ui.gd" id="1_4fyha"]
 [ext_resource type="Texture2D" uid="uid://dbsfb7jikx27j" path="res://asset/image/tile_0003.png" id="1_psp42"]
@@ -20,7 +20,6 @@
 [ext_resource type="Resource" uid="uid://c7syavjiy5u1k" path="res://scene/Resources/Items/蓝色小药水.tres" id="18_x7qk5"]
 [ext_resource type="Resource" uid="uid://dfbcm77802fqv" path="res://scene/Resources/Items/红色小药水.tres" id="19_mngwr"]
 [ext_resource type="Resource" uid="uid://opv8c15g4kri" path="res://scene/Resources/Items/白色药水.tres" id="20_o083g"]
-[ext_resource type="Script" uid="uid://27kpaxtd20dp" path="res://scene/ui/slot/icon.gd" id="21_uvuoi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyynd"]
 
@@ -424,7 +423,6 @@ offset_left = 243.0
 offset_top = 185.0
 offset_right = 373.0
 offset_bottom = 352.0
-script = ExtResource("21_uvuoi")
 
 [node name="change" type="NinePatchRect" parent="铭文库"]
 layout_mode = 0
@@ -475,31 +473,31 @@ columns = 7
 
 [node name="Slot" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("20_o083g")
+item = ExtResource("14_0sjbt")
 
 [node name="Slot2" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("17_cvtyo")
+item = ExtResource("15_uvuoi")
 
 [node name="Slot3" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("19_mngwr")
+item = ExtResource("16_fjm67")
 
 [node name="Slot4" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("15_uvuoi")
+item = ExtResource("17_cvtyo")
 
 [node name="Slot5" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("16_fjm67")
+item = ExtResource("18_x7qk5")
 
 [node name="Slot6" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("18_x7qk5")
+item = ExtResource("19_mngwr")
 
 [node name="Slot7" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
-item = ExtResource("14_0sjbt")
+item = ExtResource("20_o083g")
 
 [node name="Slot8" parent="铭文库/背包/GridContainer" groups=["school_bag_slot"] instance=ExtResource("9_2d6xq")]
 layout_mode = 2
@@ -667,7 +665,6 @@ offset_left = 243.0
 offset_top = 185.0
 offset_right = 373.0
 offset_bottom = 352.0
-script = ExtResource("21_uvuoi")
 
 [node name="资源库" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -896,6 +893,5 @@ theme = SubResource("Theme_qnnce")
 theme_override_font_sizes/font_size = 30
 text = "返回"
 
-[connection signal="mouse_entered" from="铭文库/GridContainer" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="铭文库/change/Button" to="." method="switch_to_equipment_panel"]
 [connection signal="pressed" from="资源库/change/Button" to="." method="switch_to_weapon_panel"]

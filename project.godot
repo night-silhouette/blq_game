@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="blq_game"
-run/main_scene="uid://bvsjamxlv4b6i"
+run/main_scene="uid://cp0yq0tiw5p7b"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalValue="*res://class/global/global_value.gd"
+
+[display]
+
+window/size/mode=2
 
 [input]
 

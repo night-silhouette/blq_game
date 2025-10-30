@@ -3,8 +3,18 @@ extends TextureRect
 # 拖拽状态
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
-@onready var parent_slot = get_parent()  # 关联所在背包Slot
+@onready var parent_slot = get_parent()  # 关联所在容器Slot
 @onready var left_grid: GridContainer  # 左侧铭文库GridContainer
+@onready var bag_grid: GridContainer  # 右侧背包GridContainer
+var item_resource: Item = null  # 存储当前图标对应的Item资源
+
+
+const PERMANENT_LIGHT_SLOTS = [
+	[3, 2],
+	[3, 3],
+	[3, 4]
+]
+
 
 # 图标-效果映射表（键：图标资源路径，值：效果类型）
 var icon_effect_map: Dictionary = {
@@ -15,30 +25,30 @@ var icon_effect_map: Dictionary = {
 	"res://asset/image/蓝水晶法杖.png":"right_to_side_2",
 	"res://asset/image/红色药水.png":"left_to_side_2",
 	"res://asset/image/蓝色药水.png":"up_down_2"
-	
 }
+
+# 记录当前物品产生的点亮效果
+var affected_slots: Array = []
 
 
 func _ready():
-	# 初始化左侧铭文库GridContainer（适配场景节点路径）
+	# 初始化左侧铭文库GridContainer
 	var mingwenku_node = get_node_or_null("/root/UI/铭文库")
-	if not mingwenku_node:
-		mingwenku_node = get_node_or_null("/root/UI/铭文库") 
-	
 	if mingwenku_node:
 		left_grid = mingwenku_node.get_node_or_null("GridContainer")
-		if not left_grid:
-			print("错误：铭文库下未找到GridContainer节点")
-	else:
-		print("错误：未找到铭文库节点")
+
+	# 初始化右侧背包GridContainer
+	var bag_node = get_node_or_null("/root/UI/铭文库/背包")
+	if bag_node:
+		bag_grid = bag_node.get_node_or_null("GridContainer")
 
 
 # 输入事件处理（拖拽逻辑）
 func _input(event: InputEvent):
-	# 仅处理背包槽内的物品
-	if not parent_slot or !parent_slot.is_in_group("school_bag_slot"):
+	# 忽略空物品
+	if not texture:
 		return
-	
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			# 点击图标开始拖拽
@@ -51,7 +61,16 @@ func _input(event: InputEvent):
 			if is_dragging:
 				is_dragging = false
 				z_index = 0
-				_try_place_to_mingwenku(event.global_position)
+				# 判断物品来源，限制操作范围
+				var is_from_mingwenku = parent_slot and parent_slot.is_in_group("mingwenku_slot")
+				var is_from_bag = parent_slot and parent_slot.is_in_group("school_bag_slot")
+
+				if is_from_mingwenku:
+					_try_place_to_bag(event.global_position)
+				elif is_from_bag:
+					var placed_to_mingwenku = _try_place_to_mingwenku(event.global_position)
+					if not placed_to_mingwenku:
+						_try_swap_in_bag(event.global_position)
 
 
 # 拖拽位置更新
@@ -61,168 +80,284 @@ func _process(delta: float):
 
 
 # 尝试将物品放置到铭文库
-func _try_place_to_mingwenku(global_pos: Vector2):
+func _try_place_to_mingwenku(global_pos: Vector2) -> bool:
 	if not left_grid:
 		_return_to_origin()
+		return false
+
+	var found_target_slot = false
+	for slot in get_tree().get_nodes_in_group("mingwenku_slot"):
+		var is_mouse_over = slot.get_global_rect().has_point(global_pos)
+		var slot_is_light = slot.is_light
+		var target_icon = slot.get_node_or_null("Icon")
+		var is_slot_occupied = target_icon and target_icon.texture != null
+		
+		if is_mouse_over and slot_is_light and not is_slot_occupied:
+			found_target_slot = true
+			if not target_icon:
+				_return_to_origin()
+				return false
+			
+			# 同步Item到目标Slot和Icon
+			slot.item = parent_slot.item  # 同步Slot的item属性
+			target_icon.item_resource = slot.item  # 同步Icon的item_resource
+			
+			target_icon.texture = texture
+			var effect_type = icon_effect_map.get(texture.resource_path, "")
+			
+			if effect_type:
+				var temp_affected = _trigger_effect(slot, effect_type)
+				target_icon.affected_slots = temp_affected
+			
+			# 清空原Slot和Icon的Item
+			texture = null
+			parent_slot.item = null
+			item_resource = null
+			return true
+	
+	if not found_target_slot:
+		_return_to_origin()
+	return false
+
+
+# 尝试将物品从铭文库移回背包
+func _try_place_to_bag(global_pos: Vector2):
+	var target_slot = null
+	for slot in get_tree().get_nodes_in_group("school_bag_slot"):
+		if slot.get_global_rect().has_point(global_pos):
+			target_slot = slot
+			break
+	
+	if target_slot:
+		var target_icon = target_slot.get_node_or_null("Icon")
+		if not target_icon:
+			_return_to_origin()
+			return
+		
+		if target_icon.texture == null:
+			_reset_effects()
+			# 同步Item到目标Slot和Icon
+			target_slot.item = parent_slot.item  # 同步Slot的item属性
+			target_icon.item_resource = target_slot.item  # 同步Icon的item_resource
+			
+			target_icon.texture = texture
+			target_icon.affected_slots = affected_slots.duplicate()
+			
+			# 清空原Slot和Icon的Item
+			texture = null
+			parent_slot.item = null
+			item_resource = null
+			affected_slots.clear()
+		else:
+			_return_to_origin()
+		return
+	else:
+		_return_to_origin()
+
+
+# 尝试在背包内交换物品
+func _try_swap_in_bag(global_pos: Vector2):
+	if not bag_grid:
 		return
 	
-	# 遍历铭文库槽位，检查是否可放置（仅亮态槽位允许）
-	for slot in get_tree().get_nodes_in_group("mingwenku_slot"):
-		if slot.get_global_rect().has_point(global_pos) and slot.is_light:
-			# 替换目标槽位的图标
-			var target_icon = slot.get_node_or_null("Icon")
-			if target_icon:
-				target_icon.texture = texture
-			
-			# 获取当前图标的效果类型
-			var effect_type = icon_effect_map.get(texture.resource_path, "")
-			if effect_type:
-				_trigger_effect(slot, effect_type)
-			
-			# 清空原背包槽的图标
-			texture = null
+	# 遍历背包槽位
+	for slot in get_tree().get_nodes_in_group("school_bag_slot"):
+		if slot != parent_slot and slot.get_global_rect().has_point(global_pos):
+			_swap_items(slot)
 			return
+
+
+# 接收交换时传递的affected_slots
+func _set_affected_slots(slots: Array):
+	affected_slots = slots
+
+
+# 交换两个槽位的物品
+# 交换两个槽位的物品（仅移动位置，无复制）
+func _swap_items(target_slot):
+	var target_icon = target_slot.get_node_or_null("Icon")
+	if not target_icon:
+		return
 	
-	# 无法放置时返回原背包槽
-	_return_to_origin()
+	# 1. 暂存当前槽位和目标槽位的Item、纹理、资源
+	var current_slot_item = parent_slot.item
+	var current_texture = texture
+	var current_item_resource = item_resource
+	var current_affected = affected_slots
+
+	var target_slot_item = target_slot.item
+	var target_texture = target_icon.texture
+	var target_item_resource = target_icon.item_resource
+	var target_affected = target_icon.affected_slots
+
+	# 2. 交换：当前槽位 ← 目标槽位的内容
+	parent_slot.item = target_slot_item
+	texture = target_texture
+	item_resource = target_item_resource
+	affected_slots = target_affected
+
+	# 3. 交换：目标槽位 ← 原当前槽位的内容
+	target_slot.item = current_slot_item
+	target_icon.texture = current_texture
+	target_icon.item_resource = current_item_resource
+	target_icon.affected_slots = current_affected
+
+	# 4. 更新父容器引用
+	var old_parent = parent_slot
+	parent_slot = target_slot
+	var old_icon = old_parent.get_node_or_null("Icon")
+	if old_icon:
+		old_icon.parent_slot = old_parent
 
 
-# 物品放回原背包槽
+# 物品放回原槽位
 func _return_to_origin():
 	if parent_slot:
 		var slot_center = parent_slot.global_position + parent_slot.size / 2
 		global_position = slot_center - size / 2
 
 
-# 触发槽位点亮效果
-func _trigger_effect(target_slot, effect_type: String):
-	# 获取目标槽位所在的GridContainer
+# 触发槽位点亮效果并返回受影响的槽位
+func _trigger_effect(target_slot, effect_type: String) -> Array:
+	var affected = []
 	var grid_container = target_slot.get_parent()
 	if not grid_container or grid_container.get_class() != "GridContainer":
-		print("错误：目标槽位的父节点不是GridContainer")
-		return
+		return affected
 
-	# 计算目标槽位的行列索引
 	var slot_idx = grid_container.get_children().find(target_slot)
 	if slot_idx == -1:
-		print("错误：目标槽位不在GridContainer子节点中")
-		return
+		return affected
 
-	var columns = max(grid_container.columns, 1)  # 避免列数为0
+	var columns = max(grid_container.columns, 1)
 	var total_cells = grid_container.get_child_count()
-	var row = slot_idx /columns  # 整数除法计算行
-	var col = slot_idx % columns   # 取余计算列
+	var row = slot_idx / columns
+	var col = slot_idx % columns
 
-	# 执行对应效果
 	match effect_type:
 		"light_right_2":
-			# 向右点亮2格
 			for i in [1, 2]:
 				var new_col = col + i
 				var new_idx = row * columns + new_col
-				# 边界检查
 				if new_col >= 0 and new_col < columns and new_idx < total_cells:
 					var target = grid_container.get_child(new_idx)
 					if target and target.has_method("set_state"):
 						target.set_state(true)
+						affected.append(target)
 						
 		"light_left_2":
-			# 向右点亮2格
 			for i in [1, 2]:
 				var new_col = col - i
 				var new_idx = row * columns + new_col
-				# 边界检查
 				if new_col >= 0 and new_col < columns and new_idx < total_cells:
 					var target = grid_container.get_child(new_idx)
 					if target and target.has_method("set_state"):
 						target.set_state(true)
+						affected.append(target)
+						
 		"light_up_2":
-			# 向右点亮2格
 			for i in [1, 2]:
-				var new_row = row - i  # 向上移动：行索引递减（-1是上1格，-2是上2格）
-				var new_idx = new_row * columns + col  # 列不变，行变化
-				if new_row >= 0 and col >= 0 and col < columns and new_idx < total_cells:
-					var target = grid_container.get_child(new_idx)
-					if target and target.has_method("set_state"):
-						target.set_state(true)		
-		
-		"light_down_2":
-			# 向右点亮2格
-			for i in [1, 2]:
-				var new_row = row + i  # 向上移动：行索引递减（-1是上1格，-2是上2格）
-				var new_idx = new_row * columns + col  # 列不变，行变化
-				if new_row >= 0 and col >= 0 and col < columns and new_idx < total_cells:
+				var new_row = row - i
+				var new_idx = new_row * columns + col
+				if new_row >= 0 and new_idx < total_cells:
 					var target = grid_container.get_child(new_idx)
 					if target and target.has_method("set_state"):
 						target.set_state(true)
+						affected.append(target)
 						
-		"up_to_side_2":
-			# 向右点亮2格
+		"light_down_2":
 			for i in [1, 2]:
-				var new_row = row - i # 向上移动：行索引递减（-1是上1格，-2是上2格）
-				var new_col = col + i 
-				var new_idx = new_row * columns + col  # 列不变，行变化
-				if new_row >= 0 and col >= 0 and col < columns and new_idx < total_cells:
+				var new_row = row + i
+				var new_idx = new_row * columns + col
+				if new_idx < total_cells:
 					var target = grid_container.get_child(new_idx)
 					if target and target.has_method("set_state"):
-						target.set_state(true)		
+						target.set_state(true)
+						affected.append(target)
 						
 		"right_to_side_2":
-			var up_right_row = row - 1
-			var up_right_col = col + 1
-			var up_right_idx = up_right_row * columns + up_right_col
-			var down_right_row = row + 1
-			var down_right_col = col -1
-			var down_right_idx = down_right_row * columns + down_right_col
-			
-			if up_right_row >= 0 and up_right_col < columns and up_right_idx < total_cells:
-				var up_right_target = grid_container.get_child(up_right_idx)
-				if up_right_target and up_right_target.has_method("set_state"):
-					up_right_target.set_state(true)
-					
-			if down_right_row < (total_cells / columns) and down_right_col < columns and down_right_idx < total_cells:
-				var down_right_target = grid_container.get_child(down_right_idx)
-				if down_right_target and down_right_target.has_method("set_state"):
-					down_right_target.set_state(true)		
+			var up_right_idx = (row - 1) * columns + (col + 1)
+			if up_right_idx >= 0 and up_right_idx < total_cells:
+				var target = grid_container.get_child(up_right_idx)
+				if target and target.has_method("set_state"):
+					target.set_state(true)
+					affected.append(target)
+			var down_right_idx = (row + 1) * columns + (col - 1)
+			if down_right_idx < total_cells:
+				var target = grid_container.get_child(down_right_idx)
+				if target and target.has_method("set_state"):
+					target.set_state(true)
+					affected.append(target)
 						
 		"left_to_side_2":
-			# 向右点亮2格
-			var up_right_row = row - 1
-			var up_right_col = col - 1
-			var up_right_idx = up_right_row * columns + up_right_col
-			var down_right_row = row + 1
-			var down_right_col = col + 1
-			var down_right_idx = down_right_row * columns + down_right_col
-			
-			if up_right_row >= 0 and up_right_col < columns and up_right_idx < total_cells:
-				var up_right_target = grid_container.get_child(up_right_idx)
-				if up_right_target and up_right_target.has_method("set_state"):
-					up_right_target.set_state(true)
-					
-			if down_right_row < (total_cells / columns) and down_right_col < columns and down_right_idx < total_cells:
-				var down_right_target = grid_container.get_child(down_right_idx)
-				if down_right_target and down_right_target.has_method("set_state"):
-					down_right_target.set_state(true)	
-					
-		"up_down_2":
-			# 向右点亮2格
-			var up_row = row - 1
-			var up_col = col  # 列索引不变
-			var up_idx = up_row * columns + up_col
-			var down_row = row + 1
-			var down_col = col  # 列索引不变
-			var down_idx = down_row * columns + down_col
-			
-			if up_row >= 0 and up_idx < total_cells:
-				var up_target = grid_container.get_child(up_idx)
-				if up_target and up_target.has_method("set_state"):
-					up_target.set_state(true)
-			if down_row < (total_cells / columns) and down_idx < total_cells:
-				var down_target = grid_container.get_child(down_idx)
-				if down_target and down_target.has_method("set_state"):
-					down_target.set_state(true)			
-					
-					
+			var up_left_idx = (row - 1) * columns + (col - 1)
+			if up_left_idx >= 0 and up_left_idx < total_cells:
+				var target = grid_container.get_child(up_left_idx)
+				if target and target.has_method("set_state"):
+					target.set_state(true)
+					affected.append(target)
+			var down_left_idx = (row + 1) * columns + (col + 1)
+			if down_left_idx < total_cells:
+				var target = grid_container.get_child(down_left_idx)
+				if target and target.has_method("set_state"):
+					target.set_state(true)
+					affected.append(target)
 						
+		"up_down_2":
+			var up_idx = (row - 1) * columns + col
+			if up_idx >= 0:
+				var target = grid_container.get_child(up_idx)
+				if target and target.has_method("set_state"):
+					target.set_state(true)
+					affected.append(target)
+			var down_idx = (row + 1) * columns + col
+			if down_idx < total_cells:
+				var target = grid_container.get_child(down_idx)
+				if target and target.has_method("set_state"):
+					target.set_state(true)
+					affected.append(target)
+					
+	return affected
+
+
+# 重置效果（排除永久亮槽位和有物品的槽位）
+func _reset_effects():
+	for slot in affected_slots:
+		if not is_instance_valid(slot) or not slot.has_method("set_state"):
+			continue
 		
+		var slot_icon = slot.get_node_or_null("Icon")
+		var has_item = slot_icon and slot_icon.texture != null
+		if has_item:
+			continue
+		
+		var grid_container = slot.get_parent()
+		if not grid_container or grid_container.get_class() != "GridContainer":
+			slot.set_state(false)
+			continue
+		
+		var columns = max(grid_container.columns, 1)
+		var slot_idx = grid_container.get_children().find(slot)
+		var slot_row = slot_idx / columns
+		var slot_col = slot_idx % columns
+		
+		var is_permanent_light = false
+		for light_coord in PERMANENT_LIGHT_SLOTS:
+			if light_coord[0] == slot_row and light_coord[1] == slot_col:
+				is_permanent_light = true
+				break
+		
+		if not is_permanent_light:
+			slot.set_state(false)
 	
+	affected_slots.clear()
+
+
+# 鼠标悬停显示描述
+func _on_mouse_entered():
+	if item_resource != null and owner.has_method("set_description"):
+		owner.set_description(item_resource)
+
+
+# 节点销毁时重置效果
+func _exit_tree():
+	_reset_effects()
