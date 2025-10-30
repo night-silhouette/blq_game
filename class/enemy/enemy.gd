@@ -1,7 +1,8 @@
 @icon("res://class/enemy/怪物图标.png")
 extends CharacterBody2D
 class_name	Enemy 
-
+@export_category("neccessary_setting_prop")#------------------------------------------------
+@export var died_animation_time:float
 
 @export_category("Node_references")#------------------------------------------------
 
@@ -20,7 +21,7 @@ class_name	Enemy
 			now_HP=Max_HP
 		elif(value<=0):
 			now_HP=0
-			self.queue_free()
+			Util.set_time(died_animation_time,queue_free)
 		else :
 			now_HP=value
 
@@ -31,7 +32,6 @@ class_name	Enemy
 @onready var physical_machine: State_machine = get_node(physical_machine_path)
 @onready var animationplayer: AnimationPlayer = get_node(animationplayer_path)
 @onready var player=get_tree().get_nodes_in_group("player")[0]
-@onready var main_collision:CollisionShape2D=get_node(main_collision_path)
 @onready var attack_area:Area2D=get_node(attack_area_path)
 
 

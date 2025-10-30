@@ -1,6 +1,7 @@
 extends State
 func enter() :
-	pass
+	change_use_all(false)
+	Util.set_time(obj.dash_time,func():change_use_all(true))
 	
 func exit() :
 	pass

@@ -6,6 +6,7 @@
 
 [node name="TheFirstTestEnemy" type="CharacterBody2D"]
 script = ExtResource("1_el5it")
+died_animation_time = 0.2
 behavior_machine_path = NodePath("behavior_machine")
 physical_machine_path = NodePath("physical_machine")
 animationplayer_path = NodePath("AnimationPlayer")

@@ -49,6 +49,7 @@ var is_crouch:bool=false
 var is_idle:bool=false
 var is_run:bool=false
 var is_fall:bool=false
+var is_up:bool=false
 var is_attack:bool=false
 var is_normal:bool=false
 func _physics_process(delta: float) -> void:
@@ -66,7 +67,8 @@ func _physics_process(delta: float) -> void:
 	is_dash=is_dash_temp()
 	
 	is_normal=(!obj.is_front_has_rigid and !is_crouch)
-	is_fall=(!obj.is_on_floor() and is_normal)
+	is_fall=(!obj.is_on_floor() and is_normal and obj.velocity.y>=0)
+
 	is_run=(row_dir!=0 and obj.is_on_floor() and is_normal)
 	is_idle=(row_dir==0 and obj.is_on_floor() and is_normal)
 		

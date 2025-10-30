@@ -33,6 +33,7 @@ animations = [{
 }]
 
 [node name="PlayerHurt" type="AnimatedSprite2D"]
+modulate = Color(0.474797, 1.49807e-06, 8.42288e-07, 0.580392)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_py3hw")
 frame_progress = 0.115322

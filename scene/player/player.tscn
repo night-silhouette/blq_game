@@ -277,7 +277,9 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5lop3")
+jump_speed = 320
 hurt_time = 0.15
+jump_ability = 430
 long_attack_span = 0.45
 short_attack_coefficient = 1.25
 Max_HP = 1000.0
@@ -326,15 +328,13 @@ metadata/_custom_type_script = "uid://ckqlmesknm4ku"
 [node name="move_state_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")
 init_state = "idle"
+is_debug = true
 
 [node name="idle" type="Node2D" parent="move_state_machine"]
 script = ExtResource("3_732fb")
 
 [node name="run" type="Node2D" parent="move_state_machine"]
 script = ExtResource("4_732fb")
-
-[node name="jump" type="Node2D" parent="move_state_machine"]
-script = ExtResource("5_732fb")
 
 [node name="dash" type="Node2D" parent="move_state_machine"]
 script = ExtResource("6_hfhxk")
@@ -354,6 +354,19 @@ metadata/_custom_type_script = "uid://dby1spka0hb1q"
 
 [node name="died" type="Node2D" parent="move_state_machine"]
 script = ExtResource("16_aoq8s")
+metadata/_custom_type_script = "uid://dby1spka0hb1q"
+
+[node name="air" type="Node2D" parent="move_state_machine"]
+
+[node name="jump" type="Node2D" parent="move_state_machine/air"]
+script = ExtResource("5_732fb")
+
+[node name="fall" type="Node2D" parent="move_state_machine/air"]
+script = ExtResource("3_ajqqa")
+metadata/_custom_type_script = "uid://dby1spka0hb1q"
+
+[node name="landing" type="Node2D" parent="move_state_machine/air"]
+script = ExtResource("3_ajqqa")
 metadata/_custom_type_script = "uid://dby1spka0hb1q"
 
 [node name="Collision_management" type="Node" parent="."]

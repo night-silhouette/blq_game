@@ -17,7 +17,8 @@ extends CharacterBody2D
 
 @export_category("properties")#------------------------------------------------
 @export_group("physical_prop")
-@export var hurt_time=0.3
+@export var jump_speed=300
+@export var hurt_time=0.3#僵直时长
 @export var accerleration=2500;
 @export var speed=230;
 @export var friction=3000;
@@ -26,6 +27,7 @@ extends CharacterBody2D
 @export var dash_speed=700;
 @export var dash_span=0.65
 @export var max_fall_speed=100
+@export var unbeatable_time=0.3
 
 @export_group("attack_prop")
 @export var long_attack_span=0.4
@@ -37,6 +39,8 @@ extends CharacterBody2D
 @export_group("state_prop")
 @export var Max_HP:float 
 @export var now_HP:float :
+	
+
 	set(value):
 		if (value>Max_HP):
 			now_HP=Max_HP
@@ -70,7 +74,7 @@ var is_back_has_rigid:bool=false
 
 func _physics_process(delta: float) -> void:
 	$hp.text=str(now_HP)+"hp"
-	debug.text="速度<%d,%d>" %[velocity.x,velocity.y]
+	debug.text="速度<%d,%d> %s" %[velocity.x,velocity.y,move_state_machine.cur_state_name]
 	if attack_state_machine.attack_mode==1:
 		$attack_mode.text="矛"
 	else:
@@ -116,7 +120,7 @@ func be_hurted(damage):
 		now_HP-=damage
 		hurt_lock=false
 		move_state_machine.change_state("hurt")
-		get_tree().create_timer(0.12).timeout.connect(func():hurt_lock=true)
+		get_tree().create_timer(unbeatable_time).timeout.connect(func():hurt_lock=true)
 		
 		
 		
