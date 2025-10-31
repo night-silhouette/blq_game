@@ -28,6 +28,7 @@ extends CharacterBody2D
 @export var dash_span=0.65
 @export var max_fall_speed=100
 @export var unbeatable_time=0.3
+@export var climb_ability=500
 
 @export_group("attack_prop")
 @export var long_attack_span=0.4

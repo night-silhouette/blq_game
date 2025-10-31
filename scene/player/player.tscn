@@ -277,10 +277,11 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5lop3")
-jump_speed = 320
+jump_speed = 380
 hurt_time = 0.15
-jump_ability = 430
+jump_ability = 600
 max_fall_speed = 120
+climb_ability = 450
 long_attack_span = 0.45
 short_attack_coefficient = 1.25
 Max_HP = 1000.0
@@ -329,7 +330,6 @@ metadata/_custom_type_script = "uid://ckqlmesknm4ku"
 [node name="move_state_machine" type="Node" parent="."]
 script = ExtResource("2_732fb")
 init_state = "idle"
-is_debug = true
 
 [node name="idle" type="Node2D" parent="move_state_machine"]
 script = ExtResource("3_732fb")

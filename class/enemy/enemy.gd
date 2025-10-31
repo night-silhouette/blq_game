@@ -11,6 +11,7 @@ class_name	Enemy
 @export var animationplayer_path: NodePath
 @export var main_collision_path:NodePath
 @export var attack_area_path:NodePath
+@export var sprite_path:NodePath
 
 @export_category("properties")#------------------------------------------------
 @export_group("state_prop")
@@ -33,7 +34,7 @@ class_name	Enemy
 @onready var animationplayer: AnimationPlayer = get_node(animationplayer_path)
 @onready var player=get_tree().get_nodes_in_group("player")[0]
 @onready var attack_area:Area2D=get_node(attack_area_path)
-
+@onready var sprite=get_node(sprite_path)
 
 
 
@@ -94,13 +95,24 @@ func spill_blood():
 			temp.process_material.angle=Vector2(80,100)
 	add_child(temp)
 
-
+func set_sprite_prop(prop,value):
+	var children = sprite.get_children()
+	for item in children:
+		item[prop]=value
+		
+const HIT_COLOR: Color = Color(2.5, 2.5, 2.5, 1.0)
+const NORMAL_COLOR: Color = Color.WHITE
+var hit_time=0.15
+func set_modulate_white():
+	set_sprite_prop("modulate",HIT_COLOR)
+	Util.set_time(hit_time,func():set_sprite_prop("modulate",NORMAL_COLOR))
 var hurt_lock=true
 func be_hurted(damage):
 	if hurt_lock:
 		hurt_lock=false
 		get_tree().create_timer(0.12).timeout.connect(func():hurt_lock=true)
 		spill_blood()
+		set_modulate_white()
 	now_HP-=damage
 	
 	

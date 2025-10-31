@@ -62,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	
 	is_crouch=is_crouch_temp()
 	is_attack=Input.is_action_just_pressed("attack")
+
 	is_switch=Input.is_action_just_pressed("switch")
 	is_jump=obj.is_on_floor() and Input.is_action_just_pressed("jump")
 	is_dash=is_dash_temp()
@@ -72,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	is_run=(row_dir!=0 and obj.is_on_floor() and is_normal)
 	is_idle=(row_dir==0 and obj.is_on_floor() and is_normal)
 		
-		
+	
 		
 		
 		

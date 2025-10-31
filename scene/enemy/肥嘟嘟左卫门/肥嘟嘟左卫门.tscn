@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://lhyquvhm0p2y"]
+
+[ext_resource type="Script" uid="uid://cj6a5rdct8fmj" path="res://class/enemy/enemy.gd" id="1_d2j20"]
+[ext_resource type="Script" uid="uid://deec17i0rft61" path="res://class/state_machine/State_machine.gd" id="2_ad5vu"]
+[ext_resource type="Texture2D" uid="uid://bap7rbhjudyhq" path="res://asset/animation/enemy/肥嘟嘟左卫门/idle.png" id="3_mirdn"]
+
+[sub_resource type="Animation" id="Animation_qb67h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite/Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7t1sy"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite/Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lgmul"]
+_data = {
+&"RESET": SubResource("Animation_qb67h"),
+&"idle": SubResource("Animation_7t1sy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18m8r"]
+size = Vector2(98.7755, 164.668)
+
+[node name="肥嘟嘟左卫门" type="CharacterBody2D"]
+script = ExtResource("1_d2j20")
+behavior_machine_path = NodePath("behaver_machine")
+physical_machine_path = NodePath("physical_machine")
+animationplayer_path = NodePath("AnimationPlayer")
+main_collision_path = NodePath("main_collision")
+attack_area_path = NodePath("attack_area")
+sprite_path = NodePath("sprite")
+Max_HP = 10000.0
+now_HP = 10000.0
+collision_hurt = 10.0
+metadata/_custom_type_script = "uid://cj6a5rdct8fmj"
+
+[node name="behaver_machine" type="Node" parent="."]
+script = ExtResource("2_ad5vu")
+metadata/_custom_type_script = "uid://deec17i0rft61"
+
+[node name="physical_machine" type="Node" parent="."]
+script = ExtResource("2_ad5vu")
+metadata/_custom_type_script = "uid://deec17i0rft61"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lgmul")
+}
+autoplay = "idle"
+
+[node name="main_collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.24334, 2)
+scale = Vector2(0.31904, 0.388661)
+shape = SubResource("RectangleShape2D_18m8r")
+
+[node name="attack_area" type="Area2D" parent="."]
+scale = Vector2(0.31904, 0.388661)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack_area"]
+visible = false
+polygon = PackedVector2Array(-59.5537, -82.334, 62.6881, -82.334, 62.6881, 92.6257, -59.5537, 92.6257)
+
+[node name="sprite" type="Node2D" parent="."]
+scale = Vector2(0.31904, 0.388661)
+
+[node name="Idle" type="Sprite2D" parent="sprite"]
+position = Vector2(9.53674e-07, -214)
+scale = Vector2(0.154893, 0.174375)
+texture = ExtResource("3_mirdn")
+hframes = 2

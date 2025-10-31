@@ -33,12 +33,12 @@ var affected_slots: Array = []
 
 func _ready():
 	# 初始化左侧铭文库GridContainer
-	var mingwenku_node = get_node_or_null("/root/UI/铭文库")
+	var mingwenku_node = get_node_or_null("/root/game/CanvasLayer/bag/铭文库")
 	if mingwenku_node:
 		left_grid = mingwenku_node.get_node_or_null("GridContainer")
 
 	# 初始化右侧背包GridContainer
-	var bag_node = get_node_or_null("/root/UI/铭文库/背包")
+	var bag_node = get_node_or_null("/root/game/CanvasLayer/bag//背包")
 	if bag_node:
 		bag_grid = bag_node.get_node_or_null("GridContainer")
 

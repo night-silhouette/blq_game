@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cuqjpjakitt7t" path="res://scene/player/player.tscn" id="1_8xedm"]
 [ext_resource type="Script" uid="uid://b20e18tpgsb68" path="res://scene/game/environment/environment.gd" id="2_pw1yp"]
 [ext_resource type="Script" uid="uid://c8dt46mk4nh5x" path="res://scene/game/game_input_control.gd" id="3_l2vx3"]
-[ext_resource type="PackedScene" uid="uid://cs3568w413fno" path="res://scene/enemy/the_first_test_enemy/the_first_test_enemy.tscn" id="4_82mss"]
+[ext_resource type="PackedScene" uid="uid://lhyquvhm0p2y" path="res://scene/enemy/肥嘟嘟左卫门/肥嘟嘟左卫门.tscn" id="5_0tn4t"]
 [ext_resource type="PackedScene" uid="uid://cp0yq0tiw5p7b" path="res://scene/ui/start_menu/ui.tscn" id="5_tr56l"]
 
 [sub_resource type="Gradient" id="Gradient_8xedm"]
@@ -96,23 +96,10 @@ script = ExtResource("2_pw1yp")
 [node name="GameInputControl" type="Node" parent="."]
 script = ExtResource("3_l2vx3")
 
-[node name="TheFirstTestEnemy" parent="." instance=ExtResource("4_82mss")]
-position = Vector2(147, 253)
-main_collision_path = NodePath("")
-
-[node name="TheFirstTestEnemy2" parent="." instance=ExtResource("4_82mss")]
-position = Vector2(498, 247)
-main_collision_path = NodePath("")
-
-[node name="TheFirstTestEnemy3" parent="." instance=ExtResource("4_82mss")]
-position = Vector2(303, 150)
-main_collision_path = NodePath("")
-Max_HP = 10000.0
-now_HP = 10000.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="bag" parent="CanvasLayer" instance=ExtResource("5_tr56l")]
+visible = false
 modulate = Color(1, 1, 1, 0.721569)
 offset_left = 183.0
 offset_top = 177.0
@@ -120,3 +107,8 @@ offset_right = 331.0
 offset_bottom = 365.0
 scale = Vector2(0.492591, 0.480978)
 metadata/_edit_use_anchors_ = true
+
+[node name="enemy" type="Node2D" parent="."]
+
+[node name="肥嘟嘟左卫门" parent="enemy" instance=ExtResource("5_0tn4t")]
+position = Vector2(154, 228)
