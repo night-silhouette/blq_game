@@ -14,7 +14,18 @@ position = Vector2(339, 139)
 scale = Vector2(1.315, 0.896)
 texture = ExtResource("1_b3eld")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBar_up" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.309804)
+offset_left = 93.0
+offset_top = 164.0
+offset_right = 378.0
+offset_bottom = 220.0
+scale = Vector2(1.76571, 1.12589)
+value = 100.0
+texture_progress = ExtResource("2_7n3u8")
+
+[node name="TextureProgressBar_under" type="TextureProgressBar" parent="."]
+z_index = -1
 offset_left = 93.0
 offset_top = 164.0
 offset_right = 378.0
@@ -24,7 +35,7 @@ value = 100.0
 texture_progress = ExtResource("2_7n3u8")
 
 [node name="under" type="Sprite2D" parent="."]
-z_index = -1
+z_index = -2
 position = Vector2(343.5, 192)
 scale = Vector2(2.495, 1.88)
 texture = ExtResource("4_2uuw8")
