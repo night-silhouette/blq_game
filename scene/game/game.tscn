@@ -85,7 +85,6 @@ script = ExtResource("3_l2vx3")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="bag" parent="CanvasLayer" instance=ExtResource("5_tr56l")]
-visible = false
 modulate = Color(1, 1, 1, 0.721569)
 offset_left = 183.0
 offset_top = 177.0
