@@ -1,20 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvsjamxlv4b6i"]
+[gd_scene load_steps=11 format=3 uid="uid://bvsjamxlv4b6i"]
 
 [ext_resource type="PackedScene" uid="uid://cuqjpjakitt7t" path="res://scene/player/player.tscn" id="1_8xedm"]
 [ext_resource type="Script" uid="uid://b20e18tpgsb68" path="res://scene/game/environment/environment.gd" id="2_pw1yp"]
 [ext_resource type="Script" uid="uid://c8dt46mk4nh5x" path="res://scene/game/game_input_control.gd" id="3_l2vx3"]
 [ext_resource type="PackedScene" uid="uid://lhyquvhm0p2y" path="res://scene/enemy/肥嘟嘟左卫门/肥嘟嘟左卫门.tscn" id="5_0tn4t"]
+[ext_resource type="PackedScene" uid="uid://7rvfylyu0xpk" path="res://scene/ui/player血条/血条.tscn" id="5_5nn1g"]
 [ext_resource type="PackedScene" uid="uid://cp0yq0tiw5p7b" path="res://scene/ui/start_menu/ui.tscn" id="5_tr56l"]
-
-[sub_resource type="Gradient" id="Gradient_8xedm"]
-offsets = PackedFloat32Array(0, 0.219178, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.506849, 0.506849, 0.506849, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pw1yp"]
-gradient = SubResource("Gradient_8xedm")
-fill = 1
-fill_from = Vector2(0.481651, 0.527523)
-fill_to = Vector2(0.834862, 0.252294)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xedm"]
 size = Vector2(1090, 20)
@@ -29,18 +20,13 @@ size = Vector2(84, 30)
 size = Vector2(20, 279)
 
 [node name="game" type="Node2D"]
+position = Vector2(0, -1)
 
 [node name="player" parent="." instance=ExtResource("1_8xedm")]
 position = Vector2(385, 230)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(1.21, 1.21)
-
-[node name="PointLight2D" type="PointLight2D" parent="player"]
-position = Vector2(-3.09944e-06, 4.76837e-07)
-scale = Vector2(2.63867, 2.58008)
-color = Color(1, 0.882667, 0.56, 1)
-texture = SubResource("GradientTexture2D_pw1yp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(238, 279)
@@ -108,7 +94,11 @@ offset_bottom = 365.0
 scale = Vector2(0.492591, 0.480978)
 metadata/_edit_use_anchors_ = true
 
+[node name="血条" parent="CanvasLayer" instance=ExtResource("5_5nn1g")]
+position = Vector2(-29, -13)
+scale = Vector2(0.584402, 0.586519)
+
 [node name="enemy" type="Node2D" parent="."]
 
 [node name="肥嘟嘟左卫门" parent="enemy" instance=ExtResource("5_0tn4t")]
-position = Vector2(154, 228)
+position = Vector2(268, 130)

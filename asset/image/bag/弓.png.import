@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3egnhvhj2m8d"
-path="res://.godot/imported/白色药水.png-2d8c6128d6d870b5e4cbe324b1e92d43.ctex"
+uid="uid://b3f4whty2ue3f"
+path="res://.godot/imported/弓.png-192055e459b4c9f65fb7bd86696eb84e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/白色药水.png"
-dest_files=["res://.godot/imported/白色药水.png-2d8c6128d6d870b5e4cbe324b1e92d43.ctex"]
+source_file="res://asset/image/bag/弓.png"
+dest_files=["res://.godot/imported/弓.png-192055e459b4c9f65fb7bd86696eb84e.ctex"]
 
 [params]
 

@@ -284,8 +284,6 @@ max_fall_speed = 120
 climb_ability = 450
 long_attack_span = 0.45
 short_attack_coefficient = 1.25
-Max_HP = 1000.0
-now_HP = 1000.0
 
 [node name="ani_attack" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GameInputControl")

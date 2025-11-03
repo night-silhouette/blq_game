@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sscai72l6smb"
-path="res://.godot/imported/蓝色药水.png-68bba616df9e6202e2ed490dadb9ed4a.ctex"
+uid="uid://c0qcinawi5of8"
+path="res://.godot/imported/蓝色小药水.png-8780a2a72cefa755b1a584a589d48243.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/蓝色药水.png"
-dest_files=["res://.godot/imported/蓝色药水.png-68bba616df9e6202e2ed490dadb9ed4a.ctex"]
+source_file="res://asset/image/bag/蓝色小药水.png"
+dest_files=["res://.godot/imported/蓝色小药水.png-8780a2a72cefa755b1a584a589d48243.ctex"]
 
 [params]
 

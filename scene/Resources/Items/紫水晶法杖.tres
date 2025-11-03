@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://7teti7ss4px5"]
 
-[ext_resource type="Texture2D" uid="uid://b04oappuxqr5s" path="res://asset/image/紫水晶法杖.png" id="1_fvuci"]
+[ext_resource type="Texture2D" uid="uid://b04oappuxqr5s" path="res://asset/image/bag/紫水晶法杖.png" id="1_fvuci"]
 [ext_resource type="Script" uid="uid://cy3uof1s3hbg7" path="res://scene/ui/start_menu/Item.gd" id="2_tbk12"]
 
 [resource]

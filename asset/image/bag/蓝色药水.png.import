@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0k4lyfhqaypw"
-path="res://.godot/imported/idle.png-413a57149dfa95f30deff29d2af635c3.ctex"
+uid="uid://sscai72l6smb"
+path="res://.godot/imported/蓝色药水.png-74e1748f6698f3c13794ff760e93e5c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/animation/enemy/肥嘟嘟左卫门/idle.png"
-dest_files=["res://.godot/imported/idle.png-413a57149dfa95f30deff29d2af635c3.ctex"]
+source_file="res://asset/image/bag/蓝色药水.png"
+dest_files=["res://.godot/imported/蓝色药水.png-74e1748f6698f3c13794ff760e93e5c1.ctex"]
 
 [params]
 

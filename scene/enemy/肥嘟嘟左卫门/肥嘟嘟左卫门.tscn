@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cj6a5rdct8fmj" path="res://class/enemy/enemy.gd" id="1_d2j20"]
 [ext_resource type="Script" uid="uid://deec17i0rft61" path="res://class/state_machine/State_machine.gd" id="2_ad5vu"]
-[ext_resource type="Texture2D" uid="uid://bap7rbhjudyhq" path="res://asset/animation/enemy/肥嘟嘟左卫门/idle.png" id="3_mirdn"]
+[ext_resource type="Texture2D" uid="uid://0k4lyfhqaypw" path="res://asset/animation/enemy/肥嘟嘟左卫门/idle.png" id="3_mirdn"]
 
 [sub_resource type="Animation" id="Animation_qb67h"]
 length = 0.001
@@ -21,7 +21,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7t1sy"]
 resource_name = "idle"
-length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,10 +29,10 @@ tracks/0/path = NodePath("sprite/Idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lgmul"]
@@ -55,7 +54,7 @@ attack_area_path = NodePath("attack_area")
 sprite_path = NodePath("sprite")
 Max_HP = 10000.0
 now_HP = 10000.0
-collision_hurt = 10.0
+collision_hurt = 30.0
 metadata/_custom_type_script = "uid://cj6a5rdct8fmj"
 
 [node name="behaver_machine" type="Node" parent="."]
@@ -89,7 +88,7 @@ polygon = PackedVector2Array(-59.5537, -82.334, 62.6881, -82.334, 62.6881, 92.62
 scale = Vector2(0.31904, 0.388661)
 
 [node name="Idle" type="Sprite2D" parent="sprite"]
-position = Vector2(9.53674e-07, -214)
-scale = Vector2(0.154893, 0.174375)
+position = Vector2(62.6881, -202.639)
+scale = Vector2(0.0974933, 0.164647)
 texture = ExtResource("3_mirdn")
-hframes = 2
+hframes = 4

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c7syavjiy5u1k"]
 
-[ext_resource type="Texture2D" uid="uid://c0qcinawi5of8" path="res://asset/image/蓝色小药水.png" id="1_1cox4"]
+[ext_resource type="Texture2D" uid="uid://c0qcinawi5of8" path="res://asset/image/bag/蓝色小药水.png" id="1_1cox4"]
 [ext_resource type="Script" uid="uid://cy3uof1s3hbg7" path="res://scene/ui/start_menu/Item.gd" id="2_6qpij"]
 
 [resource]

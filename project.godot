@@ -23,6 +23,7 @@ Util="*res://class/util/util.gd"
 [global_group]
 
 player=""
+ui=""
 
 [input]
 

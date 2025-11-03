@@ -1,8 +1,9 @@
 @icon("res://class/enemy/怪物图标.png")
 extends CharacterBody2D
 class_name	Enemy 
-@export_category("neccessary_setting_prop")#------------------------------------------------
+@export_category("pysical")#------------------------------------------------
 @export var died_animation_time:float
+@export var knock_distance=8
 
 @export_category("Node_references")#------------------------------------------------
 
@@ -15,7 +16,11 @@ class_name	Enemy
 
 @export_category("properties")#------------------------------------------------
 @export_group("state_prop")
-@export var Max_HP:float 
+@export var Max_HP:float :
+	set(value):
+		Max_HP=value
+		if Max_HP<now_HP:
+			now_HP=Max_HP
 @export var now_HP:float :
 	set(value):
 		if (value>Max_HP):
@@ -61,11 +66,11 @@ func _ready() -> void:
 
 
 	set_pysical_layer()
+var player_is_vertical_attack:bool
 func _physics_process(delta: float) -> void:
 	velocity.y+=GlobalValue.gravity
-	
 	move_and_slide()
-
+	player_is_vertical_attack=player.now_attack_dir==1 or player.now_attack_dir==2
 
 var blood=preload("res://scene/particle/spill_blood.tscn")
 
@@ -106,6 +111,11 @@ var hit_time=0.15
 func set_modulate_white():
 	set_sprite_prop("modulate",HIT_COLOR)
 	Util.set_time(hit_time,func():set_sprite_prop("modulate",NORMAL_COLOR))
+	
+func knock_back():
+	if !player_is_vertical_attack:
+		var distance_x=player.global_position.x-self.global_position.x
+		self.global_position.x-=knock_distance*sign(distance_x)
 var hurt_lock=true
 func be_hurted(damage):
 	if hurt_lock:
@@ -113,6 +123,7 @@ func be_hurted(damage):
 		get_tree().create_timer(0.12).timeout.connect(func():hurt_lock=true)
 		spill_blood()
 		set_modulate_white()
+		knock_back()
 	now_HP-=damage
 	
 	

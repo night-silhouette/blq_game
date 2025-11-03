@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxwi6lmj6pd6f"
-path="res://.godot/imported/蓝水晶法杖.png-4d4401b9020357c1945b2728aa5e5896.ctex"
+uid="uid://b85wnw53kayvr"
+path="res://.godot/imported/tile_0000.png-38bfa973671ca05134d9bd23555b6489.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/蓝水晶法杖.png"
-dest_files=["res://.godot/imported/蓝水晶法杖.png-4d4401b9020357c1945b2728aa5e5896.ctex"]
+source_file="res://asset/image/bag/tile_0000.png"
+dest_files=["res://.godot/imported/tile_0000.png-38bfa973671ca05134d9bd23555b6489.ctex"]
 
 [params]
 

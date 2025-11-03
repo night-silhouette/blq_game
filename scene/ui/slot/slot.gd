@@ -11,8 +11,8 @@ extends PanelContainer
 @onready var bg = $BG
 
 # 预加载亮/暗图片（替换为你的资源路径）
-const LIGHT_TEXTURE = preload("res://asset/image/tile_0013.png")
-const DARK_TEXTURE = preload("res://asset/image/tile_0014.png")
+const LIGHT_TEXTURE = preload("res://asset/image/bag/tile_0013.png")
+const DARK_TEXTURE = preload("res://asset/image/bag/tile_0014.png")
 
 
 var is_light: bool = false  # 记录当前状态（亮/暗）

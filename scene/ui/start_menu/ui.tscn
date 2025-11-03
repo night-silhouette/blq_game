@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dl7iatb046at" path="res://scene/ui/start_menu/ui.gd" id="1_4fyha"]
 [ext_resource type="FontFile" uid="uid://bmwg8r1ycvvby" path="res://scene/font/fusion-pixel-12px-monospaced-zh_hans.ttf" id="2_fvtxj"]
-[ext_resource type="Texture2D" uid="uid://b85wnw53kayvr" path="res://asset/image/tile_0000.png" id="8_uyynd"]
+[ext_resource type="Texture2D" uid="uid://b85wnw53kayvr" path="res://asset/image/bag/tile_0000.png" id="8_uyynd"]
 [ext_resource type="PackedScene" uid="uid://bqdx3b1ko8dmm" path="res://scene/ui/slot/slot.tscn" id="9_2d6xq"]
 [ext_resource type="Script" uid="uid://crfn500pi4m1b" path="res://scene/ui/slot/left_grid_container.gd" id="10_0sjbt"]
-[ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/tile_0014.png" id="10_adnce"]
+[ext_resource type="Texture2D" uid="uid://cck1qvfsj21n4" path="res://asset/image/bag/tile_0014.png" id="10_adnce"]
 [ext_resource type="Resource" uid="uid://ccryrej5vasu5" path="res://scene/Resources/Items/蓝色药水.tres" id="14_0sjbt"]
 [ext_resource type="Script" uid="uid://bllytofbjkpk0" path="res://scene/ui/start_menu/back.gd" id="14_uvuoi"]
 [ext_resource type="Resource" uid="uid://hmg8idgkai86" path="res://scene/Resources/Items/红色药水.tres" id="15_uvuoi"]

@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var back_body=$back_body
 @onready var debug=$debug
 @onready var attack_state_machine=$attack_state_machine
-
+@onready var player_hp_bar=get_tree().get_nodes_in_group("ui").filter(func(value):return value.ui_name=="player血条")[0]
 
 
 @export_category("properties")#------------------------------------------------
@@ -38,10 +38,15 @@ extends CharacterBody2D
 @export var damage=30
 
 @export_group("state_prop")
-@export var Max_HP:float 
-@export var now_HP:float :
-	
 
+@export var Max_HP:float =100:
+	set(value):
+		Max_HP=value
+		if player_hp_bar:
+			player_hp_bar.max_hp=Max_HP
+		if Max_HP<now_HP:
+			now_HP=Max_HP
+@export var now_HP:float =100:
 	set(value):
 		if (value>Max_HP):
 			now_HP=Max_HP
@@ -50,12 +55,19 @@ extends CharacterBody2D
 			move_state_machine.change_state("died")
 		else :
 			now_HP=value
-
+		if player_hp_bar:
+			player_hp_bar.now_hp=now_HP
 var is_special_state=false
 var now_attack_dir=1    #1：上  2：下  3：左  4：右
+
+func init_max_hp():
+	player_hp_bar.max_hp=Max_HP
+	player_hp_bar.now_hp=now_HP
 func _ready():
+	call_deferred("init_max_hp")
 	
 	
+	#init state_machine    --starting--
 	move_state_machine.init(self,ani_move,gameInputControl)
 	collision_management.init(self,null,gameInputControl)
 	attack_state_machine.init(self,ani_attack,gameInputControl)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b85wnw53kayvr"
-path="res://.godot/imported/tile_0000.png-fbdb78695213993d31fc71017a894283.ctex"
+uid="uid://j5xrasfltuj8"
+path="res://.godot/imported/红色小药水.png-9591d6155d43f26310ee060c9b5aa20d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/tile_0000.png"
-dest_files=["res://.godot/imported/tile_0000.png-fbdb78695213993d31fc71017a894283.ctex"]
+source_file="res://asset/image/bag/红色小药水.png"
+dest_files=["res://.godot/imported/红色小药水.png-9591d6155d43f26310ee060c9b5aa20d.ctex"]
 
 [params]
 

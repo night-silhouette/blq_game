@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j5xrasfltuj8"
-path="res://.godot/imported/红色小药水.png-d5e51af1626c1cb84a2d5af1b87009a6.ctex"
+uid="uid://cxwi6lmj6pd6f"
+path="res://.godot/imported/蓝水晶法杖.png-1198f3794437c4a0c4ad0aa538f9f950.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/红色小药水.png"
-dest_files=["res://.godot/imported/红色小药水.png-d5e51af1626c1cb84a2d5af1b87009a6.ctex"]
+source_file="res://asset/image/bag/蓝水晶法杖.png"
+dest_files=["res://.godot/imported/蓝水晶法杖.png-1198f3794437c4a0c4ad0aa538f9f950.ctex"]
 
 [params]
 

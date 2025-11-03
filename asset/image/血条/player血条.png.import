@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0k4lyfhqaypw"
-path="res://.godot/imported/idle.png-413a57149dfa95f30deff29d2af635c3.ctex"
+uid="uid://dusc7kjx6856f"
+path="res://.godot/imported/player血条.png-79a336027963189564e4814211588e2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/animation/enemy/肥嘟嘟左卫门/idle.png"
-dest_files=["res://.godot/imported/idle.png-413a57149dfa95f30deff29d2af635c3.ctex"]
+source_file="res://asset/image/血条/player血条.png"
+dest_files=["res://.godot/imported/player血条.png-79a336027963189564e4814211588e2d.ctex"]
 
 [params]
 
