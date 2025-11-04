@@ -12,9 +12,12 @@ var max_hp:float:
 @onready var under=$under
 
 func tween_transform(value):
-	var tween:Tween=get_tree().create_tween()
-	tween.tween_property(textureProgressBar_up,"value",value,0.4)
-	tween.set_trans(Tween.TRANS_EXPO)
+	var tween1:Tween=get_tree().create_tween()
+	tween1.tween_property(textureProgressBar_up,"value",value,0.5)
+	tween1.set_trans(Tween.TRANS_QUINT)
+	textureProgressBar_up.tint_progress=Color.RED
+	Util.set_time(0.2,func():textureProgressBar_up.tint_progress=Color.WHITE)
+	
 	
 var now_hp:float:
 	set(value):
