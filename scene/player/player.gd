@@ -17,12 +17,13 @@ extends CharacterBody2D
 
 @export_category("properties")#------------------------------------------------
 @export_group("physical_prop")
+@export var attack_jump_ability=480
 @export var jump_speed=300
 @export var hurt_time=0.3#僵直时长
 @export var accerleration=2500;
 @export var speed=230;
 @export var friction=3000;
-@export var jump_ability=400
+@export var jump_ability:float=0.8#越小越大
 @export var dash_time=0.15
 @export var dash_speed=700;
 @export var dash_span=0.65
@@ -91,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$attack_mode.text="刀"
 	if not is_special_state:#一些特殊状态 ban常规逻辑
-		velocity.y+=GlobalValue.gravity
+		velocity.y+=GlobalValue.gravity*delta
 		if gameInputControl.row_dir>0:
 			velocity.x=move_toward(velocity.x,speed,accerleration*delta)
 		if gameInputControl.row_dir<0:

@@ -33,13 +33,17 @@ func enter() :
 	
 	
 func exit():
-	pass
-
+	temp=GlobalValue.gravity
+	frame=0
 func update(_delta: float):
 	pass
+var temp=GlobalValue.gravity#用来调谐重力
+var frame=0
 func physics_process(_delta: float):
+	frame+=_delta*obj.jump_ability
+	temp=(1-ease(frame,0.32))*GlobalValue.gravity#重力变化曲线
 	if Input.is_action_pressed("jump"):
-		obj.velocity.y=move_toward(obj.velocity.y,-obj.jump_speed,obj.jump_ability*_delta)
+		obj.velocity.y=move_toward(obj.velocity.y,-obj.jump_speed,temp*_delta)
 	if Input.is_action_just_released("jump"):
 		s_fall.emit()
 	if obj.velocity.y>=0:
