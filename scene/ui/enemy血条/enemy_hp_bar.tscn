@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://etryf634fgt2"]
+
+[ext_resource type="Texture2D" uid="uid://dibmms5v8qqo8" path="res://asset/image/enemy血条/血条主体.png" id="1_uxyri"]
+
+[node name="EnemyHpBar" type="Node2D"]
+
+[node name="血条主体" type="Sprite2D" parent="."]
+position = Vector2(10, -14)
+texture = ExtResource("1_uxyri")
