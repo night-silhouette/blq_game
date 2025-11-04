@@ -6,7 +6,7 @@ var attack_lock=true
 @onready var move_state_machine=$"../../move_state_machine"
 
 func down_attack_jump():#下批
-	obj.velocity.y=-400
+	obj.velocity.y=-obj.attack_jump_ability
 	if move_state_machine.cur_state_name=="jump":
 		$"../../move_state_machine/air/jump".s_fall.emit()
 
