@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1vvtqyixa7fi"]
+
+[ext_resource type="Script" uid="uid://dtqopkm6ju1ot" path="res://scene/ui/伤害数字/hurt_number.gd" id="1_a31ls"]
+
+[node name="HurtNumber" type="Node2D"]
+script = ExtResource("1_a31ls")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,7 +1,14 @@
 @icon("res://class/enemy/怪物图标.png")
 extends CharacterBody2D
 class_name	Enemy 
+
+
+
+var hp_bar_scene = preload("res://scene/ui/enemy血条/enemy_hp_bar.tscn")
+var hp_bar
 @export_category("pysical")#------------------------------------------------
+@export var hp_bar_position:Vector2=Vector2.ZERO
+@export var hp_bar_scale:Vector2=Vector2(1,1)
 @export var died_animation_time:float
 @export var knock_distance=8
 
@@ -21,6 +28,8 @@ class_name	Enemy
 		Max_HP=value
 		if Max_HP<now_HP:
 			now_HP=Max_HP
+		if hp_bar:
+			hp_bar.max_hp=Max_HP	
 @export var now_HP:float :
 	set(value):
 		if (value>Max_HP):
@@ -30,6 +39,9 @@ class_name	Enemy
 			Util.set_time(died_animation_time,queue_free)
 		else :
 			now_HP=value
+		if hp_bar:
+			hp_bar.now_hp=now_HP
+@export var level:int
 
 @export_group("attack_prop")
 @export var collision_hurt:float
@@ -55,7 +67,18 @@ func set_attack_layer():
 	attack_area.set_collision_mask_value(2,true)
 	attack_area.set_collision_mask_value(1,false)
 	
+func init_max_hp():
+	hp_bar.max_hp=Max_HP
+	hp_bar.now_hp=now_HP
 func _ready() -> void:
+	call_deferred("init_max_hp")
+
+	hp_bar= hp_bar_scene.instantiate()
+	hp_bar.position=hp_bar_position
+	hp_bar.scale=hp_bar_scale
+	hp_bar.level=level
+	self.add_child(hp_bar)
+	
 	set_attack_layer()
 	attack_area.body_entered.connect(func(body):player.be_hurted(collision_hurt))
 	
@@ -117,13 +140,28 @@ func knock_back():
 		var distance_x=player.global_position.x-self.global_position.x
 		self.global_position.x-=knock_distance*sign(distance_x)
 var hurt_lock=true
+
+var hurt_number_scene=preload("res://scene/ui/伤害数字/hurt_number.tscn")
+func hurt_number(value):
+	var hurt_num=hurt_number_scene.instantiate()
+	var flag
+	if value>=Max_HP*0.4:
+		flag=true
+	else :
+		flag=false
+	self.add_child(hurt_num)
+	hurt_num.setup_and_play(value,flag)
+	
+
 func be_hurted(damage):
 	if hurt_lock:
 		hurt_lock=false
 		get_tree().create_timer(0.12).timeout.connect(func():hurt_lock=true)
+		
 		spill_blood()
 		set_modulate_white()
 		knock_back()
+		hurt_number(damage)
 	now_HP-=damage
 	
 	

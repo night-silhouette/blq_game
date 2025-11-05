@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhmi7rr2q11so"
-path="res://.godot/imported/底色.png-31bb668c8e18c8fed1c435e1ec182ad9.ctex"
+uid="uid://b5iqvaf210uiy"
+path="res://.godot/imported/绿色.png-ef2492cb6fa7ce88004c597fc019f858.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/enemy血条/底色.png"
-dest_files=["res://.godot/imported/底色.png-31bb668c8e18c8fed1c435e1ec182ad9.ctex"]
+source_file="res://asset/image/enemy血条/绿色.png"
+dest_files=["res://.godot/imported/绿色.png-ef2492cb6fa7ce88004c597fc019f858.ctex"]
 
 [params]
 

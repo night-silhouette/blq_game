@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkgpveud4gaqf"
-path="res://.godot/imported/player血条.png-79a336027963189564e4814211588e2d.ctex"
+uid="uid://1du7ic6ta0s3"
+path="res://.godot/imported/条_under.png-56464f60941869f7865e93c1c2919c9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image/血条/player血条.png"
-dest_files=["res://.godot/imported/player血条.png-79a336027963189564e4814211588e2d.ctex"]
+source_file="res://asset/image/enemy血条/条_under.png"
+dest_files=["res://.godot/imported/条_under.png-56464f60941869f7865e93c1c2919c9f.ctex"]
 
 [params]
 

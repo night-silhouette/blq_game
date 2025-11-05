@@ -1,4 +1,10 @@
 extends CharacterBody2D
+
+#信号区 -------
+signal on_level_change(level)#新level
+
+#-------------
+
 @onready var ani_move=$ani_move 
 @onready var ani_attack=$ani_attack
 @onready var move_state_machine=$move_state_machine
@@ -39,7 +45,7 @@ extends CharacterBody2D
 @export var damage=30
 
 @export_group("state_prop")
-
+@export var level:int=1
 @export var Max_HP:float =100:
 	set(value):
 		Max_HP=value

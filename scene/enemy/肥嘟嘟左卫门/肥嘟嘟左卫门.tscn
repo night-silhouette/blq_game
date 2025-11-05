@@ -46,14 +46,17 @@ size = Vector2(98.7755, 164.668)
 
 [node name="肥嘟嘟左卫门" type="CharacterBody2D"]
 script = ExtResource("1_d2j20")
+hp_bar_position = Vector2(0, -40)
+hp_bar_scale = Vector2(0.8, 0.8)
 behavior_machine_path = NodePath("behaver_machine")
 physical_machine_path = NodePath("physical_machine")
 animationplayer_path = NodePath("AnimationPlayer")
 main_collision_path = NodePath("main_collision")
 attack_area_path = NodePath("attack_area")
 sprite_path = NodePath("sprite")
-Max_HP = 10000.0
-now_HP = 10000.0
+Max_HP = 200.0
+now_HP = 200.0
+level = 3
 collision_hurt = 30.0
 metadata/_custom_type_script = "uid://cj6a5rdct8fmj"
 
