@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bs368fi7mxovw" path="res://asset/image/血条/条_under.png" id="4_2uuw8"]
 
 [node name="player血条" type="Node2D" groups=["ui"]]
+position = Vector2(-344, -192)
 script = ExtResource("1_08xjn")
 
 [node name="up" type="Sprite2D" parent="."]
@@ -23,6 +24,7 @@ offset_bottom = 220.0
 scale = Vector2(1.76571, 1.12589)
 value = 100.0
 texture_progress = ExtResource("2_7n3u8")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureProgressBar_under" type="TextureProgressBar" parent="."]
 z_index = -1
@@ -33,6 +35,7 @@ offset_bottom = 220.0
 scale = Vector2(1.76571, 1.12589)
 value = 100.0
 texture_progress = ExtResource("2_7n3u8")
+metadata/_edit_use_anchors_ = true
 
 [node name="under" type="Sprite2D" parent="."]
 z_index = -2

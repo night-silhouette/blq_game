@@ -279,9 +279,9 @@ collision_mask = 5
 script = ExtResource("1_5lop3")
 jump_speed = 380
 hurt_time = 0.15
-jump_ability = 600
+jump_ability = 0.85
 max_fall_speed = 120
-climb_ability = 450
+climb_ability = 480
 long_attack_span = 0.45
 short_attack_coefficient = 1.25
 
