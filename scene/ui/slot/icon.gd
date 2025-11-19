@@ -7,6 +7,7 @@ var drag_offset: Vector2 = Vector2.ZERO
 @onready var left_grid: GridContainer  # 左侧铭文库GridContainer
 @onready var bag_grid: GridContainer  # 右侧背包GridContainer
 var item_resource: Item = null  # 存储当前图标对应的Item资源
+@onready var control_panel = get_node_or_null("/root/game/CanvasLayer/bag")
 
 
 const PERMANENT_LIGHT_SLOTS = [
@@ -35,6 +36,7 @@ var warning_border: ColorRect = null
 
 func _ready():
 	# 初始化左侧铭文库GridContainer
+	warning_border = ColorRect.new()
 	var mingwenku_node = get_node_or_null("/root/game/CanvasLayer/bag/铭文库")
 	if mingwenku_node:
 		left_grid = mingwenku_node.get_node_or_null("GridContainer")
@@ -102,24 +104,45 @@ func _process(delta: float):
 		warning_border.size = size + Vector2(4, 4)  # 比图标大4像素
 
 
-# 检查受影响的槽位中是否有物品
+# 新增：仅在受影响槽位变化时更新警告
+func _on_affected_slots_changed():
+	if parent_slot and parent_slot.is_in_group("mingwenku_slot"):
+		_show_warning_border(_check_affected_slots_has_item())
+	else:
+		_show_warning_border(false)
+
+# 覆盖原有 affected_slots 设置逻辑，确保变化时触发警告更新
+func set_affected_slots(slots: Array):
+	affected_slots = slots.duplicate()  # 深拷贝避免引用问题
+	_on_affected_slots_changed()  # 槽位变化时立即更新警告
+
+# 保留原有的检查和显示函数
 func _check_affected_slots_has_item() -> bool:
 	for slot in affected_slots:
 		if not is_instance_valid(slot):
 			continue
-			
 		var slot_icon = slot.get_node_or_null("Icon")
 		if slot_icon and slot_icon.texture != null:
-			return true  # 发现有物品的槽位
+			return true
 	return false
 
-
-# 显示/隐藏红色警告边框
 func _show_warning_border(show: bool):
 	if warning_border:
 		warning_border.visible = show
 
+# 强制隐藏警告（撤回时用）
+func force_hide_warning():
+	if warning_border:
+		warning_border.visible = false
 
+# 在物品图标脚本（TextureRect）中
+func update_all_mingwenku_warnings():
+	for slot in get_tree().get_nodes_in_group("mingwenku_slot"):
+		var icon = slot.get_node_or_null("Icon")
+		if icon and icon.texture:  # 仅处理有物品的图标
+			icon._on_affected_slots_changed()  # 重新检查并更新警告
+			
+			
 # 尝试将物品从铭文库移回背包
 func _try_place_to_bag(global_pos: Vector2):
 	# 再次检查受影响槽位（防止拖拽过程中状态变化）
@@ -141,6 +164,11 @@ func _try_place_to_bag(global_pos: Vector2):
 			return
 		
 		if target_icon.texture == null:
+			if  control_panel:
+				var snapshot = control_panel.OperationSnapshot.new()
+				snapshot._init_move(control_panel.OperationType.MOVE_FROM_MINGWENKU, parent_slot, target_slot, self)
+				control_panel.undo_stack.append(snapshot)
+			
 			_reset_effects()
 			# 同步Item到目标Slot和Icon
 			target_slot.item = parent_slot.item  # 同步Slot的item属性
@@ -162,7 +190,7 @@ func _try_place_to_bag(global_pos: Vector2):
 		_return_to_origin()
 
 
-# 其他原有函数保持不变...
+
 func _try_place_to_mingwenku(global_pos: Vector2) -> bool:
 	if not left_grid:
 		_return_to_origin()
@@ -180,7 +208,12 @@ func _try_place_to_mingwenku(global_pos: Vector2) -> bool:
 			if not target_icon:
 				_return_to_origin()
 				return false
-			
+				
+			if control_panel:  # 先判断节点是否存在
+				var snapshot = control_panel.OperationSnapshot.new()
+				snapshot._init_move(control_panel.OperationType.MOVE_TO_MINGWENKU, parent_slot, slot, self)
+				control_panel.undo_stack.append(snapshot)
+				
 			# 同步Item到目标Slot和Icon
 			slot.item = parent_slot.item  # 同步Slot的item属性
 			target_icon.item_resource = slot.item  # 同步Icon的item_resource
@@ -226,6 +259,11 @@ func _swap_items(target_slot):
 	var target_icon = target_slot.get_node_or_null("Icon")
 	if not target_icon:
 		return
+		
+	if control_panel:
+		var snapshot = control_panel.OperationSnapshot.new()
+		snapshot._init_swap(parent_slot, target_slot, self, target_icon)
+		control_panel.undo_stack.append(snapshot)
 	
 	# 1. 暂存当前槽位和目标槽位的Item、纹理、资源
 	var current_slot_item = parent_slot.item
@@ -375,28 +413,21 @@ func _reset_effects():
 		if not is_instance_valid(slot) or not slot.has_method("set_state"):
 			continue
 		
-		var slot_icon = slot.get_node_or_null("Icon")
-		var has_item = slot_icon and slot_icon.texture != null
-		if has_item:
-			continue
+		# 检查该槽位是否为永久点亮槽位
+		var is_permanent = false
+		var grid = slot.get_parent()
+		if grid and grid.get_class() == "GridContainer":
+			var columns = grid.columns
+			var slot_idx = grid.get_children().find(slot)
+			var row = slot_idx / columns
+			var col = slot_idx % columns
+			for coord in PERMANENT_LIGHT_SLOTS:
+				if coord[0] == row and coord[1] == col:
+					is_permanent = true
+					break
 		
-		var grid_container = slot.get_parent()
-		if not grid_container or grid_container.get_class() != "GridContainer":
-			slot.set_state(false)
-			continue
-		
-		var columns = max(grid_container.columns, 1)
-		var slot_idx = grid_container.get_children().find(slot)
-		var slot_row = slot_idx / columns
-		var slot_col = slot_idx % columns
-		
-		var is_permanent_light = false
-		for light_coord in PERMANENT_LIGHT_SLOTS:
-			if light_coord[0] == slot_row and light_coord[1] == slot_col:
-				is_permanent_light = true
-				break
-		
-		if not is_permanent_light:
+		# 非永久槽位才熄灭
+		if not is_permanent:
 			slot.set_state(false)
 	
 	affected_slots.clear()

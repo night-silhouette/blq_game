@@ -57,11 +57,7 @@ func set_state(is_light_state: bool):
 	is_light = is_light_state
 	bg.texture = LIGHT_TEXTURE if is_light else DARK_TEXTURE
 		
-		
-		
-		
-		
-		
+			
 func _on_mouse_entered():
 	if item !=null:
 		owner.set_description(item)

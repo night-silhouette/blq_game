@@ -584,7 +584,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Button" type="Button" parent="铭文库/背包/change"]
-layout_mode = 0
 offset_left = 7.0
 offset_top = 648.0
 offset_right = 147.0
@@ -594,7 +593,6 @@ theme_override_font_sizes/font_size = 30
 text = "撤回"
 
 [node name="Button2" type="Button" parent="铭文库/背包/change"]
-layout_mode = 0
 offset_left = 143.0
 offset_top = 650.0
 offset_right = 280.0
